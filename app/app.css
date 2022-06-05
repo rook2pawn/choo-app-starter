@@ -1,5 +1,40 @@
-.column {
-  display: flex;
+
+
+@font-face{
+  font-family: Gotham;
+  src: url('Gotham-Light_Web.52135bfa.woff2') format('woff2');
+}
+input {
+  cursor:pointer;
+}
+a {
+  all: unset;
+  cursor:pointer;
+  font-style:italic;
+  text-decoration: underline;
+}
+a:hover {
+  text-decoration: underline;
+  color:#3581c9;
+}
+body {
+  background-color: #1c1c1c;
+  color:white;
+  display:flex;
+  flex-direction: row;
+  font-family: Gotham;
+}
+div.container  {
+  display:flex;
+  flex-direction:row;
+}
+div.nav {
+  display:flex;
   flex-direction: column;
-  width: 800px;
+  border-right:thin solid #3e3e3e;
+  box-sizing: border-box;
+  padding-right:2em;
+}
+div.main {
+  padding-left:1em;
 }

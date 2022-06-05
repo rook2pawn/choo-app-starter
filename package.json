@@ -4,11 +4,14 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
+    "brfs": "^2.0.2",
     "browserify": "^17.0.0",
     "choo": "^7.1.0",
     "choo-devtools": "^3.0.4",
     "cookie-parser": "^1.4.6",
+    "highlight.js": "^11.5.1",
     "http-server": "^14.0.0",
+    "markdown-it": "^13.0.1",
     "nanocomponent": "^6.6.0",
     "nanohtml": "^1.9.1",
     "nanostate": "rook2pawn/nanostate",
@@ -22,8 +25,8 @@
     "start-proxy-secure": "node proxy-secure.js",
     "start-proxy": "node proxy.js -p 8080",
     "start-backend": "node server.js -p 5150 --unhandled-rejections=strict",
-    "watch": "watchify -v -g sheetify ./app/index.js -o ./web/bundle.js",
-    "build": "browserify -v -g sheetify ./app/index.js -o ./web/bundle.js"
+    "watch": "watchify -t brfs -v -g sheetify ./app/index.js -o ./web/bundle.js",
+    "build": "browserify -t brfs -v -g sheetify ./app/index.js -o ./web/bundle.js"
   },
   "keywords": [],
   "author": "",

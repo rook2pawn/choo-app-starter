@@ -1,13 +1,15 @@
 const html = require("nanohtml");
 const Links = require("../components/links");
 
-function mainView(state, emit) {
+function view(state, emit) {
   const links = new Links();
   return html`<body>
-    <div>
-      <h4>Choo App Starter - Home</h4>
-      ${links.render({ state, emit })}
+    <div class="container">
+      <div class="nav">${links.render({ state, emit })}</div>
+      <div class="main">
+        <h4>Choo App Starter - Home</h4>
+      </div>
     </div>
   </body>`;
 }
-module.exports = exports = mainView;
+module.exports = exports = view;
