@@ -74391,8 +74391,11 @@ module.exports = exports = view;
 const html = require("nanohtml");
 const Links = require("../components/links");
 
+
+const snippet = "const html = require(\"nanohtml\");\nconst Links = require(\"../components/links\");\n\nconst fs = require(\"fs\");\nconst snippet = fs.readFileSync(__filename, \"utf8\");\nconst format = require(\"../format\");\n\nfunction view(state, emit) {\n  const step = state.query.step ? parseInt(state.query.step) : 1;\n  const links = new Links();\n  return html`<body>\n    <div class=\"container\">\n      <div class=\"nav\">${links.render({ state, emit })}</div>\n      <div class=\"main\">\n        <h2>Choo App Starter - Sequential Routing Demonstration</h2>\n        <h4>Step number: ${step}</h4>\n        ${step > 1 ? html`<a href=\"/sequential?step=${step - 1}\">Prev</a>` : \"\"}\n        <a href=\"/sequential?step=${step + 1}\">Next</a>\n        ${format(snippet)}\n      </div>\n    </div>\n  </body>`;\n}\n\nmodule.exports = exports = view;\n";
+const format = require("../format");
+
 function view(state, emit) {
-  console.log(state);
   const step = state.query.step ? parseInt(state.query.step) : 1;
   const links = new Links();
   return html`<body>
@@ -74403,6 +74406,7 @@ function view(state, emit) {
         <h4>Step number: ${step}</h4>
         ${step > 1 ? html`<a href="/sequential?step=${step - 1}">Prev</a>` : ""}
         <a href="/sequential?step=${step + 1}">Next</a>
+        ${format(snippet)}
       </div>
     </div>
   </body>`;
@@ -74410,4 +74414,4 @@ function view(state, emit) {
 
 module.exports = exports = view;
 
-},{"../components/links":4,"nanohtml":302}]},{},[2]);
+},{"../components/links":4,"../format":6,"nanohtml":302}]},{},[2]);

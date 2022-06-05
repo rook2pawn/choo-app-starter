@@ -1,8 +1,11 @@
 const html = require("nanohtml");
 const Links = require("../components/links");
 
+const fs = require("fs");
+const snippet = fs.readFileSync(__filename, "utf8");
+const format = require("../format");
+
 function view(state, emit) {
-  console.log(state);
   const step = state.query.step ? parseInt(state.query.step) : 1;
   const links = new Links();
   return html`<body>
@@ -13,6 +16,7 @@ function view(state, emit) {
         <h4>Step number: ${step}</h4>
         ${step > 1 ? html`<a href="/sequential?step=${step - 1}">Prev</a>` : ""}
         <a href="/sequential?step=${step + 1}">Next</a>
+        ${format(snippet)}
       </div>
     </div>
   </body>`;
