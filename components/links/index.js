@@ -26,8 +26,16 @@ class Component extends Nanocomponent {
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
+        </ul>
+        <h3>Routing / URL</h3>
+        <ul>
           <li><a href="/sequential">Sequential Demo</a></li>
           <li><a href="/randomPage">Random Page</a></li>
+          <li><a href="/params/cat/cupid">REST - params and queries</a></li>
+        </ul>
+        <h3>Events</h3>
+        <ul>
+          <li><a href="/toast">System Toast events</a></li>
         </ul>
       </div>
     `;

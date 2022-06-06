@@ -17,7 +17,6 @@ function highlighter(md, opts) {
   rules.code_block = wrap(rules.code_block);
 
   function highlight(code, lang) {
-    console.log("HIGHLIGHT!!:", lang);
     var result = null;
     if (lang && hljs.getLanguage(lang)) {
       result = hljs.highlight(code, { language: lang });
@@ -39,7 +38,7 @@ function highlighter(md, opts) {
 md.use(highlighter);
 
 function format(string) {
-  string = `# CODE START\n\n\`\`\`javascript\n${string}\`\`\`\n### END OF CODE`;
+  string = `### CODE START\n\n\`\`\`javascript\n${string}\`\`\`\n### CODE END `;
   return raw(md.render(string));
 }
 

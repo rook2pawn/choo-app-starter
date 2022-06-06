@@ -6,9 +6,11 @@ const css = 0;
 const sequentialView = require("../views/sequential");
 const notFoundView = require("../views/notFound");
 const randomPage = require("../views/randomPage");
+const params = require("../views/params");
+const toast = require("../views/toast");
 
-;((require('sheetify/insert')("@font-face{\n  font-family: Gotham;\n  src: url('Gotham-Light_Web.52135bfa.woff2') format('woff2');\n}\ninput {\n  cursor:pointer;\n}\na {\n  all: unset;\n  cursor:pointer;\n  font-style:italic;\n  text-decoration: underline;\n}\na:hover {\n  text-decoration: underline;\n  color:#3581c9;\n}\nbody {\n  background-color: #1c1c1c;\n  color:white;\n  display:flex;\n  flex-direction: row;\n  font-family: Gotham;\n}\ndiv.container  {\n  display:flex;\n  flex-direction:row;\n}\ndiv.nav {\n  display:flex;\n  flex-direction: column;\n  border-right:thin solid #3e3e3e;\n  box-sizing: border-box;\n  padding-right:2em;\n}\ndiv.main {\n  padding-left:1em;\n}") || true) && "_6f757e10");
-;((require('sheetify/insert')("/*\n\nAtom One Dark by Daniel Gamage\nOriginal One Dark Syntax theme from https://github.com/atom/one-dark-syntax\n\nbase:    #282c34\nmono-1:  #abb2bf\nmono-2:  #818896\nmono-3:  #5c6370\nhue-1:   #56b6c2\nhue-2:   #61aeee\nhue-3:   #c678dd\nhue-4:   #98c379\nhue-5:   #e06c75\nhue-5-2: #be5046\nhue-6:   #d19a66\nhue-6-2: #e6c07b\n\n*/\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  color: #abb2bf;\n  background: #282c34;\n}\n\n.hljs-comment,\n.hljs-quote {\n  color: #5c6370;\n  font-style: italic;\n}\n\n.hljs-doctag,\n.hljs-keyword,\n.hljs-formula {\n  color: #c678dd;\n}\n\n.hljs-section,\n.hljs-name,\n.hljs-selector-tag,\n.hljs-deletion,\n.hljs-subst {\n  color: #e06c75;\n}\n\n.hljs-literal {\n  color: #56b6c2;\n}\n\n.hljs-string,\n.hljs-regexp,\n.hljs-addition,\n.hljs-attribute,\n.hljs-meta-string {\n  color: #98c379;\n}\n\n.hljs-built_in,\n.hljs-class .hljs-title {\n  color: #e6c07b;\n}\n\n.hljs-attr,\n.hljs-variable,\n.hljs-template-variable,\n.hljs-type,\n.hljs-selector-class,\n.hljs-selector-attr,\n.hljs-selector-pseudo,\n.hljs-number {\n  color: #d19a66;\n}\n\n.hljs-symbol,\n.hljs-bullet,\n.hljs-link,\n.hljs-meta,\n.hljs-selector-id,\n.hljs-title {\n  color: #61aeee;\n}\n\n.hljs-emphasis {\n  font-style: italic;\n}\n\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-link {\n  text-decoration: underline;\n}") || true) && "_3b3ce479");
+;((require('sheetify/insert')("@font-face{\n  font-family: Gotham;\n  src: url('Gotham-Light_Web.52135bfa.woff2') format('woff2');\n}\ninput {\n  cursor:pointer;\n}\na {\n  all: unset;\n  cursor:pointer;\n  font-style:italic;\n  text-decoration: underline;\n}\na:hover {\n  text-decoration: underline;\n  color:#3581c9;\n}\nbody {\n  background-color: #1c1c1c;\n  color:white;\n  display:flex;\n  flex-direction: row;\n  font-family: Gotham;\n}\ndiv.container  {\n  display:flex;\n  flex-direction:row;\n}\ndiv.nav {\n  display:flex;\n  flex-direction: column;\n  border-right:thin solid #3e3e3e;\n  box-sizing: border-box;\n  padding-right:2em;\n}\ndiv.main {\n  padding-left:1em;\n}") || true) && "_6f757e10"); // app-wide css
+;((require('sheetify/insert')("/*\n\nAtom One Dark by Daniel Gamage\nOriginal One Dark Syntax theme from https://github.com/atom/one-dark-syntax\n\nbase:    #282c34\nmono-1:  #abb2bf\nmono-2:  #818896\nmono-3:  #5c6370\nhue-1:   #56b6c2\nhue-2:   #61aeee\nhue-3:   #c678dd\nhue-4:   #98c379\nhue-5:   #e06c75\nhue-5-2: #be5046\nhue-6:   #d19a66\nhue-6-2: #e6c07b\n\n*/\n\n.hljs {\n  display: block;\n  overflow-x: auto;\n  padding: 0.5em;\n  color: #abb2bf;\n  background: #282c34;\n}\n\n.hljs-comment,\n.hljs-quote {\n  color: #5c6370;\n  font-style: italic;\n}\n\n.hljs-doctag,\n.hljs-keyword,\n.hljs-formula {\n  color: #c678dd;\n}\n\n.hljs-section,\n.hljs-name,\n.hljs-selector-tag,\n.hljs-deletion,\n.hljs-subst {\n  color: #e06c75;\n}\n\n.hljs-literal {\n  color: #56b6c2;\n}\n\n.hljs-string,\n.hljs-regexp,\n.hljs-addition,\n.hljs-attribute,\n.hljs-meta-string {\n  color: #98c379;\n}\n\n.hljs-built_in,\n.hljs-class .hljs-title {\n  color: #e6c07b;\n}\n\n.hljs-attr,\n.hljs-variable,\n.hljs-template-variable,\n.hljs-type,\n.hljs-selector-class,\n.hljs-selector-attr,\n.hljs-selector-pseudo,\n.hljs-number {\n  color: #d19a66;\n}\n\n.hljs-symbol,\n.hljs-bullet,\n.hljs-link,\n.hljs-meta,\n.hljs-selector-id,\n.hljs-title {\n  color: #61aeee;\n}\n\n.hljs-emphasis {\n  font-style: italic;\n}\n\n.hljs-strong {\n  font-weight: bold;\n}\n\n.hljs-link {\n  text-decoration: underline;\n}") || true) && "_3b3ce479"); // for code highlighting
 
 module.exports = () => {
   const app = choo();
@@ -16,16 +18,33 @@ module.exports = () => {
   app.use((state) => {
     state.logger = false;
   });
+  app.use((state, emitter) => {
+    emitter.on("toast", ({ message, level }) => {
+      state.onToast({ message, level });
+    });
+    /*
+    state.toasts = [];
+    emitter.on("toast", ({ message, level }) => {
+      state.toasts.push({ message, level });
+      emitter.emit("render");
+      setTimeout(() => {
+        state.toasts.shift();
+        emitter.emit("render");
+      }, 2000);
+    });
+    */
+  });
   app.route("/", mainView);
   app.route("/about", aboutView);
   app.route("/sequential", sequentialView);
   app.route("/randomPage", randomPage);
+  app.route("/params/:animal/:name", params);
+  app.route("/toast", toast);
   app.route("*", notFoundView);
-  app.use((state, emitter) => {});
   app.mount("body");
 };
 
-},{"../views":341,"../views/notFound":343,"../views/randomPage":344,"../views/sequential":345,"choo":26,"choo-devtools":14,"sheetify/insert":329}],2:[function(require,module,exports){
+},{"../views":344,"../views/notFound":346,"../views/params":347,"../views/randomPage":348,"../views/sequential":349,"../views/toast":350,"choo":29,"choo-devtools":17,"sheetify/insert":332}],2:[function(require,module,exports){
 const lib = require("./lib");
 const app = require("./app");
 
@@ -71,8 +90,16 @@ class Component extends Nanocomponent {
         <ul>
           <li><a href="/">Home</a></li>
           <li><a href="/about">About</a></li>
+        </ul>
+        <h3>Routing / URL</h3>
+        <ul>
           <li><a href="/sequential">Sequential Demo</a></li>
           <li><a href="/randomPage">Random Page</a></li>
+          <li><a href="/params/cat/cupid">REST - params and queries</a></li>
+        </ul>
+        <h3>Events</h3>
+        <ul>
+          <li><a href="/toast">System Toast events</a></li>
         </ul>
       </div>
     `;
@@ -90,7 +117,113 @@ class Component extends Nanocomponent {
 
 module.exports = exports = Component;
 
-},{"choo/html":24,"nanocomponent":297,"nanostate":316,"sheetify/insert":329}],5:[function(require,module,exports){
+},{"choo/html":27,"nanocomponent":300,"nanostate":319,"sheetify/insert":332}],5:[function(require,module,exports){
+const Nanocomponent = require("nanocomponent");
+const html = require("choo/html");
+const css = 0;
+const nanostate = require("nanostate");
+const format = require("../../format");
+
+;((require('sheetify/insert')("") || true) && "_d41d8cd9");
+
+class Component extends Nanocomponent {
+  constructor() {
+    super();
+    this._loadedResolve;
+    this.loaded = new Promise((resolve, reject) => {
+      this._loadedResolve = resolve;
+    });
+    this.name = "";
+    this.animal = "";
+    this.animals = ["cat", "dog", "monkey", "hamster", "horse"];
+
+    this.names = [
+      "cupid",
+      "gabby",
+      "rayRay",
+      "garfield",
+      "spotty",
+      "littleGabby",
+      "husbandCat",
+    ];
+  }
+
+  createElement({ state, emit }) {
+    const url = `/params/${this.animal || state.params.animal}/${
+      this.name || state.params.name
+    }`;
+    return html`<div class="">
+      <h2>Params Demo</h2>
+      <div>
+        Current URL Params are :
+        <h3>${JSON.stringify(state.params)}</h3>
+      </div>
+      <div>
+        <label for="animals">Choose a animal:</label>
+        <select
+          id="animals"
+          onchange=${(e) => {
+            const value = e.target.value;
+            this.animal = value;
+            this.rerender();
+          }}
+        >
+          <option disabled selected value>-- select an option --</option>
+          ${this.animals.map((name) => {
+            return html`<option
+                ${name === this.animal ? "selected" : ""}
+                value="${name}"
+              >
+                ${name}
+              </option>
+              "`;
+          })}
+        </select>
+      </div>
+      <div>
+        <label for="name">Choose a name:</label>
+        <select
+          id="name"
+          onchange=${(e) => {
+            const value = e.target.value;
+            this.name = value;
+            this.rerender();
+          }}
+        >
+          <option disabled selected value>-- select an option --</option>
+          ${this.names.map((name) => {
+            return html`<option
+                ${name === this.name ? "selected" : ""}
+                value="${name}"
+              >
+                ${name}
+              </option>
+              "`;
+          })}
+        </select>
+      </div>
+      ${this.animal && this.name
+        ? html`<h2>Your URL:</h2>
+            <a href="${url}">${url}</a>`
+        : ""}
+
+      <div>${format(`app.route("/params/:animal/:name", params);\n`)}</div>
+    </div>`;
+  }
+
+  load(el) {
+    this.el = el;
+    this._loadedResolve();
+  }
+
+  update() {
+    return false;
+  }
+}
+
+module.exports = exports = Component;
+
+},{"../../format":9,"choo/html":27,"nanocomponent":300,"nanostate":319,"sheetify/insert":332}],6:[function(require,module,exports){
 const Nanocomponent = require("nanocomponent");
 const html = require("choo/html");
 const css = 0;
@@ -147,7 +280,161 @@ class Component extends Nanocomponent {
 
 module.exports = exports = Component;
 
-},{"../../format":6,"choo/html":24,"nanocomponent":297,"nanostate":316,"sheetify/insert":329}],6:[function(require,module,exports){
+},{"../../format":9,"choo/html":27,"nanocomponent":300,"nanostate":319,"sheetify/insert":332}],7:[function(require,module,exports){
+const Nanocomponent = require("nanocomponent");
+const html = require("choo/html");
+const css = 0;
+const nanostate = require("nanostate");
+
+;((require('sheetify/insert')("div.toastContainer {\n    display:flex;\n    flex-direction: column;\n    position:absolute;\n    top:10px;\n    right:10px;\n}\n\ndiv.toast {\n    position:relative;\n    width:200px;\n    height:25px;\n    background-color:green;\n    color:white;\n    border-radius:15px;\n    align-items:center;\n    display:flex;\n    padding:2em;\n    font-size:20px;\n    font-family:Gotham;\n    font-weight:bold;\n    margin-bottom:10px;\n}\ndiv.toast.error {\n    background-color:red;\n    color:black;\n}\ndiv.toast.info {\n    background-color:rgb(72, 255, 0);\n    color:black;\n}\n\ndiv.toast.warn {\n    background-color:rgb(219, 231, 50);\n    color:black;\n}\n\ndiv.toast.hidden {\n    display:none;\n}") || true) && "_6b84a611");
+
+class Component extends Nanocomponent {
+  constructor() {
+    super();
+    this._loadedResolve;
+    this.loaded = new Promise((resolve, reject) => {
+      this._loadedResolve = resolve;
+    });
+    this.toasts = [];
+  }
+
+  onToast({ message, level }) {
+    this.toasts.push({ message, level });
+    this.rerender();
+    setTimeout(() => {
+      this.toasts.shift();
+      this.rerender();
+    }, 5000);
+  }
+  createElement({ state, emit }) {
+    state.onToast = this.onToast.bind(this);
+    return html`<div class="toastContainer">
+      ${this.toasts.map(({ message, level }, idx) => {
+        return html`<div
+          class="toast ${level.toLowerCase()}"
+          id="toastId_${idx}"
+        >
+          ${message}
+        </div>`;
+      })}
+    </div>`;
+  }
+
+  load(el) {
+    this.el = el;
+    this._loadedResolve();
+  }
+
+  update(state) {
+    return false;
+  }
+}
+
+module.exports = exports = Component;
+
+},{"choo/html":27,"nanocomponent":300,"nanostate":319,"sheetify/insert":332}],8:[function(require,module,exports){
+const Nanocomponent = require("nanocomponent");
+const html = require("choo/html");
+const css = 0;
+const nanostate = require("nanostate");
+
+;((require('sheetify/insert')("") || true) && "_d41d8cd9");
+
+class Component extends Nanocomponent {
+  constructor() {
+    super();
+    this._loadedResolve;
+    this.loaded = new Promise((resolve, reject) => {
+      this._loadedResolve = resolve;
+    });
+    this.level = "INFO";
+    this.message = "";
+    this.levels = ["INFO", "WARN", "ERROR"];
+    this.messages = {};
+    this.messages.INFO = [
+      "You have a new message.",
+      "You were awarded 1 badge.",
+    ];
+    this.messages.WARN = [
+      "The system will be shutting down in 15 minutes.",
+      "Please make a backup copy or risk losing it!",
+    ];
+    this.messages.ERROR = [
+      "Error: Network unreachable.",
+      "Credentials are invalid. Try again",
+    ];
+  }
+
+  createElement({ state, emit }) {
+    return html`<div class="">
+      <h2>System toasts</h2>
+      <div>
+        <label for="level">Choose a level:</label>
+        <select
+          id="level"
+          onchange=${(e) => {
+            const value = e.target.value;
+            this.level = value;
+            this.message = "";
+            this.rerender();
+          }}
+        >
+          <option disabled selected value>-- select an option --</option>
+          ${this.levels.map(
+            (level) =>
+              html`<option
+                ${this.level === level ? "selected" : ""}
+                value="${level}"
+              >
+                ${level}
+              </option>`
+          )}
+        </select>
+        <h3>${this.level} Message choice:</h3>
+        ${this.messages[this.level].map((message) => {
+          return html`
+            <input
+              type="radio"
+              name="message"
+              value="${message}"
+              ${message == this.message ? "checked" : ""}
+              onchange=${() => {
+                this.message = message;
+                this.rerender();
+              }}
+            />
+            <label>${message}</label>
+          `;
+        })}
+
+        <div>
+          <h3>Deliver the notication</h3>
+          <input
+            type="button"
+            ${this.message === "" ? "disabled" : ""}
+            value="Deliver the notification"
+            onclick=${() => {
+              emit("toast", { level: this.level, message: this.message });
+            }}
+          />
+        </div>
+      </div>
+    </div>`;
+  }
+
+  load(el) {
+    this.el = el;
+    this._loadedResolve();
+  }
+
+  update() {
+    return false;
+  }
+}
+
+module.exports = exports = Component;
+
+},{"choo/html":27,"nanocomponent":300,"nanostate":319,"sheetify/insert":332}],9:[function(require,module,exports){
 var raw = require("choo/html/raw");
 var markdown = require("markdown-it");
 
@@ -167,7 +454,6 @@ function highlighter(md, opts) {
   rules.code_block = wrap(rules.code_block);
 
   function highlight(code, lang) {
-    console.log("HIGHLIGHT!!:", lang);
     var result = null;
     if (lang && hljs.getLanguage(lang)) {
       result = hljs.highlight(code, { language: lang });
@@ -189,13 +475,13 @@ function highlighter(md, opts) {
 md.use(highlighter);
 
 function format(string) {
-  string = `# CODE START\n\n\`\`\`javascript\n${string}\`\`\`\n### END OF CODE`;
+  string = `### CODE START\n\n\`\`\`javascript\n${string}\`\`\`\n### CODE END `;
   return raw(md.render(string));
 }
 
 module.exports = exports = format;
 
-},{"choo/html/raw":25,"highlight.js":36,"highlight.js/lib/languages/javascript":121,"markdown-it":235}],7:[function(require,module,exports){
+},{"choo/html/raw":28,"highlight.js":39,"highlight.js/lib/languages/javascript":124,"markdown-it":238}],10:[function(require,module,exports){
 (function (global){(function (){
 'use strict';
 
@@ -705,7 +991,7 @@ var objectKeys = Object.keys || function (obj) {
 };
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"object-assign":319,"util/":10}],8:[function(require,module,exports){
+},{"object-assign":322,"util/":13}],11:[function(require,module,exports){
 if (typeof Object.create === 'function') {
   // implementation from standard node.js 'util' module
   module.exports = function inherits(ctor, superCtor) {
@@ -730,14 +1016,14 @@ if (typeof Object.create === 'function') {
   }
 }
 
-},{}],9:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = function isBuffer(arg) {
   return arg && typeof arg === 'object'
     && typeof arg.copy === 'function'
     && typeof arg.fill === 'function'
     && typeof arg.readUInt8 === 'function';
 }
-},{}],10:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 (function (process,global){(function (){
 // Copyright Joyent, Inc. and other Node contributors.
 //
@@ -1327,7 +1613,7 @@ function hasOwnProperty(obj, prop) {
 }
 
 }).call(this)}).call(this,require('_process'),typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./support/isBuffer":9,"_process":325,"inherits":8}],11:[function(require,module,exports){
+},{"./support/isBuffer":12,"_process":328,"inherits":11}],14:[function(require,module,exports){
 'use strict'
 
 exports.byteLength = byteLength
@@ -1479,9 +1765,9 @@ function fromByteArray (uint8) {
   return parts.join('')
 }
 
-},{}],12:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 
-},{}],13:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 (function (Buffer){(function (){
 /*!
  * The buffer module from node.js, for the browser.
@@ -3262,7 +3548,7 @@ function numberIsNaN (obj) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"base64-js":11,"buffer":13,"ieee754":231}],14:[function(require,module,exports){
+},{"base64-js":14,"buffer":16,"ieee754":234}],17:[function(require,module,exports){
 var EventEmitter = require('events').EventEmitter
 
 var storage = require('./lib/storage')
@@ -3314,7 +3600,7 @@ function expose (opts) {
   }
 }
 
-},{"./lib/copy":15,"./lib/debug":16,"./lib/help":17,"./lib/log":18,"./lib/logger":19,"./lib/perf":20,"./lib/storage":21,"events":31,"wayfarer/get-all-routes":337}],15:[function(require,module,exports){
+},{"./lib/copy":18,"./lib/debug":19,"./lib/help":20,"./lib/log":21,"./lib/logger":22,"./lib/perf":23,"./lib/storage":24,"events":34,"wayfarer/get-all-routes":340}],18:[function(require,module,exports){
 var stateCopy = require('state-copy')
 var pluck = require('plucker')
 
@@ -3330,7 +3616,7 @@ function copy (state) {
   stateCopy(isStateString ? pluck.apply(this, arguments) : state)
 }
 
-},{"plucker":323,"state-copy":330}],16:[function(require,module,exports){
+},{"plucker":326,"state-copy":333}],19:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var onChange = require('object-change-callsite')
 var nanologger = require('nanologger')
@@ -3372,7 +3658,7 @@ function debug (state, emitter, app, localEmitter) {
   })
 }
 
-},{"assert":7,"nanologger":307,"object-change-callsite":320}],17:[function(require,module,exports){
+},{"assert":10,"nanologger":310,"object-change-callsite":323}],20:[function(require,module,exports){
 module.exports = help
 
 function help () {
@@ -3405,7 +3691,7 @@ function print (cmd, desc) {
 
 function noop () {}
 
-},{}],18:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 var removeItems = require('remove-array-items')
 var scheduler = require('nanoscheduler')()
 var nanologger = require('nanologger')
@@ -3483,7 +3769,7 @@ function log (state, emitter, app, localEmitter) {
 
 function noop () {}
 
-},{"clone":28,"nanologger":307,"nanoscheduler":315,"remove-array-items":327}],19:[function(require,module,exports){
+},{"clone":31,"nanologger":310,"nanoscheduler":318,"remove-array-items":330}],22:[function(require,module,exports){
 var scheduler = require('nanoscheduler')()
 var nanologger = require('nanologger')
 var Hooks = require('choo-hooks')
@@ -3568,7 +3854,7 @@ function logger (state, emitter, opts) {
   }
 }
 
-},{"choo-hooks":22,"nanologger":307,"nanoscheduler":315}],20:[function(require,module,exports){
+},{"choo-hooks":25,"nanologger":310,"nanoscheduler":318}],23:[function(require,module,exports){
 var onPerformance = require('on-performance')
 
 var BAR = '█'
@@ -3709,7 +3995,7 @@ function getMedian (args) {
 // Do nothing.
 function noop () {}
 
-},{"on-performance":322}],21:[function(require,module,exports){
+},{"on-performance":325}],24:[function(require,module,exports){
 var pretty = require('prettier-bytes')
 
 module.exports = storage
@@ -3752,7 +4038,7 @@ function fmt (num) {
 
 function noop () {}
 
-},{"prettier-bytes":324}],22:[function(require,module,exports){
+},{"prettier-bytes":327}],25:[function(require,module,exports){
 var onPerformance = require('on-performance')
 var scheduler = require('nanoscheduler')()
 var assert = require('assert')
@@ -3881,7 +4167,7 @@ ChooHooks.prototype._emitLoaded = function () {
   })
 }
 
-},{"assert":7,"nanoscheduler":315,"on-performance":322}],23:[function(require,module,exports){
+},{"assert":10,"nanoscheduler":318,"on-performance":325}],26:[function(require,module,exports){
 var assert = require('assert')
 var LRU = require('nanolru')
 
@@ -3924,13 +4210,13 @@ function newCall (Cls) {
   return new (Cls.bind.apply(Cls, arguments)) // eslint-disable-line
 }
 
-},{"assert":294,"nanolru":308}],24:[function(require,module,exports){
+},{"assert":297,"nanolru":311}],27:[function(require,module,exports){
 module.exports = require('nanohtml')
 
-},{"nanohtml":302}],25:[function(require,module,exports){
+},{"nanohtml":305}],28:[function(require,module,exports){
 module.exports = require('nanohtml/raw')
 
-},{"nanohtml/raw":305}],26:[function(require,module,exports){
+},{"nanohtml/raw":308}],29:[function(require,module,exports){
 var scrollToAnchor = require('scroll-to-anchor')
 var documentReady = require('document-ready')
 var nanotiming = require('nanotiming')
@@ -4214,7 +4500,7 @@ Choo.prototype._setCache = function (state) {
   }
 }
 
-},{"./component/cache":23,"assert":294,"document-ready":29,"nanobus":295,"nanohref":299,"nanomorph":309,"nanoquery":312,"nanoraf":313,"nanorouter":314,"nanotiming":318,"scroll-to-anchor":328}],27:[function(require,module,exports){
+},{"./component/cache":26,"assert":297,"document-ready":32,"nanobus":298,"nanohref":302,"nanomorph":312,"nanoquery":315,"nanoraf":316,"nanorouter":317,"nanotiming":321,"scroll-to-anchor":331}],30:[function(require,module,exports){
 /*! clipboard-copy. MIT License. Feross Aboukhadijeh <https://feross.org/opensource> */
 /* global DOMException */
 
@@ -4267,7 +4553,7 @@ function clipboardCopy (text) {
     : Promise.reject(new DOMException('The request is not allowed', 'NotAllowedError'))
 }
 
-},{}],28:[function(require,module,exports){
+},{}],31:[function(require,module,exports){
 (function (Buffer){(function (){
 var clone = (function() {
 'use strict';
@@ -4528,7 +4814,7 @@ if (typeof module === 'object' && module.exports) {
 }
 
 }).call(this)}).call(this,require("buffer").Buffer)
-},{"buffer":13}],29:[function(require,module,exports){
+},{"buffer":16}],32:[function(require,module,exports){
 'use strict'
 
 module.exports = ready
@@ -4547,10 +4833,10 @@ function ready (callback) {
   })
 }
 
-},{}],30:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 module.exports={"Aacute":"Á","aacute":"á","Abreve":"Ă","abreve":"ă","ac":"∾","acd":"∿","acE":"∾̳","Acirc":"Â","acirc":"â","acute":"´","Acy":"А","acy":"а","AElig":"Æ","aelig":"æ","af":"⁡","Afr":"𝔄","afr":"𝔞","Agrave":"À","agrave":"à","alefsym":"ℵ","aleph":"ℵ","Alpha":"Α","alpha":"α","Amacr":"Ā","amacr":"ā","amalg":"⨿","amp":"&","AMP":"&","andand":"⩕","And":"⩓","and":"∧","andd":"⩜","andslope":"⩘","andv":"⩚","ang":"∠","ange":"⦤","angle":"∠","angmsdaa":"⦨","angmsdab":"⦩","angmsdac":"⦪","angmsdad":"⦫","angmsdae":"⦬","angmsdaf":"⦭","angmsdag":"⦮","angmsdah":"⦯","angmsd":"∡","angrt":"∟","angrtvb":"⊾","angrtvbd":"⦝","angsph":"∢","angst":"Å","angzarr":"⍼","Aogon":"Ą","aogon":"ą","Aopf":"𝔸","aopf":"𝕒","apacir":"⩯","ap":"≈","apE":"⩰","ape":"≊","apid":"≋","apos":"'","ApplyFunction":"⁡","approx":"≈","approxeq":"≊","Aring":"Å","aring":"å","Ascr":"𝒜","ascr":"𝒶","Assign":"≔","ast":"*","asymp":"≈","asympeq":"≍","Atilde":"Ã","atilde":"ã","Auml":"Ä","auml":"ä","awconint":"∳","awint":"⨑","backcong":"≌","backepsilon":"϶","backprime":"‵","backsim":"∽","backsimeq":"⋍","Backslash":"∖","Barv":"⫧","barvee":"⊽","barwed":"⌅","Barwed":"⌆","barwedge":"⌅","bbrk":"⎵","bbrktbrk":"⎶","bcong":"≌","Bcy":"Б","bcy":"б","bdquo":"„","becaus":"∵","because":"∵","Because":"∵","bemptyv":"⦰","bepsi":"϶","bernou":"ℬ","Bernoullis":"ℬ","Beta":"Β","beta":"β","beth":"ℶ","between":"≬","Bfr":"𝔅","bfr":"𝔟","bigcap":"⋂","bigcirc":"◯","bigcup":"⋃","bigodot":"⨀","bigoplus":"⨁","bigotimes":"⨂","bigsqcup":"⨆","bigstar":"★","bigtriangledown":"▽","bigtriangleup":"△","biguplus":"⨄","bigvee":"⋁","bigwedge":"⋀","bkarow":"⤍","blacklozenge":"⧫","blacksquare":"▪","blacktriangle":"▴","blacktriangledown":"▾","blacktriangleleft":"◂","blacktriangleright":"▸","blank":"␣","blk12":"▒","blk14":"░","blk34":"▓","block":"█","bne":"=⃥","bnequiv":"≡⃥","bNot":"⫭","bnot":"⌐","Bopf":"𝔹","bopf":"𝕓","bot":"⊥","bottom":"⊥","bowtie":"⋈","boxbox":"⧉","boxdl":"┐","boxdL":"╕","boxDl":"╖","boxDL":"╗","boxdr":"┌","boxdR":"╒","boxDr":"╓","boxDR":"╔","boxh":"─","boxH":"═","boxhd":"┬","boxHd":"╤","boxhD":"╥","boxHD":"╦","boxhu":"┴","boxHu":"╧","boxhU":"╨","boxHU":"╩","boxminus":"⊟","boxplus":"⊞","boxtimes":"⊠","boxul":"┘","boxuL":"╛","boxUl":"╜","boxUL":"╝","boxur":"└","boxuR":"╘","boxUr":"╙","boxUR":"╚","boxv":"│","boxV":"║","boxvh":"┼","boxvH":"╪","boxVh":"╫","boxVH":"╬","boxvl":"┤","boxvL":"╡","boxVl":"╢","boxVL":"╣","boxvr":"├","boxvR":"╞","boxVr":"╟","boxVR":"╠","bprime":"‵","breve":"˘","Breve":"˘","brvbar":"¦","bscr":"𝒷","Bscr":"ℬ","bsemi":"⁏","bsim":"∽","bsime":"⋍","bsolb":"⧅","bsol":"\\","bsolhsub":"⟈","bull":"•","bullet":"•","bump":"≎","bumpE":"⪮","bumpe":"≏","Bumpeq":"≎","bumpeq":"≏","Cacute":"Ć","cacute":"ć","capand":"⩄","capbrcup":"⩉","capcap":"⩋","cap":"∩","Cap":"⋒","capcup":"⩇","capdot":"⩀","CapitalDifferentialD":"ⅅ","caps":"∩︀","caret":"⁁","caron":"ˇ","Cayleys":"ℭ","ccaps":"⩍","Ccaron":"Č","ccaron":"č","Ccedil":"Ç","ccedil":"ç","Ccirc":"Ĉ","ccirc":"ĉ","Cconint":"∰","ccups":"⩌","ccupssm":"⩐","Cdot":"Ċ","cdot":"ċ","cedil":"¸","Cedilla":"¸","cemptyv":"⦲","cent":"¢","centerdot":"·","CenterDot":"·","cfr":"𝔠","Cfr":"ℭ","CHcy":"Ч","chcy":"ч","check":"✓","checkmark":"✓","Chi":"Χ","chi":"χ","circ":"ˆ","circeq":"≗","circlearrowleft":"↺","circlearrowright":"↻","circledast":"⊛","circledcirc":"⊚","circleddash":"⊝","CircleDot":"⊙","circledR":"®","circledS":"Ⓢ","CircleMinus":"⊖","CirclePlus":"⊕","CircleTimes":"⊗","cir":"○","cirE":"⧃","cire":"≗","cirfnint":"⨐","cirmid":"⫯","cirscir":"⧂","ClockwiseContourIntegral":"∲","CloseCurlyDoubleQuote":"”","CloseCurlyQuote":"’","clubs":"♣","clubsuit":"♣","colon":":","Colon":"∷","Colone":"⩴","colone":"≔","coloneq":"≔","comma":",","commat":"@","comp":"∁","compfn":"∘","complement":"∁","complexes":"ℂ","cong":"≅","congdot":"⩭","Congruent":"≡","conint":"∮","Conint":"∯","ContourIntegral":"∮","copf":"𝕔","Copf":"ℂ","coprod":"∐","Coproduct":"∐","copy":"©","COPY":"©","copysr":"℗","CounterClockwiseContourIntegral":"∳","crarr":"↵","cross":"✗","Cross":"⨯","Cscr":"𝒞","cscr":"𝒸","csub":"⫏","csube":"⫑","csup":"⫐","csupe":"⫒","ctdot":"⋯","cudarrl":"⤸","cudarrr":"⤵","cuepr":"⋞","cuesc":"⋟","cularr":"↶","cularrp":"⤽","cupbrcap":"⩈","cupcap":"⩆","CupCap":"≍","cup":"∪","Cup":"⋓","cupcup":"⩊","cupdot":"⊍","cupor":"⩅","cups":"∪︀","curarr":"↷","curarrm":"⤼","curlyeqprec":"⋞","curlyeqsucc":"⋟","curlyvee":"⋎","curlywedge":"⋏","curren":"¤","curvearrowleft":"↶","curvearrowright":"↷","cuvee":"⋎","cuwed":"⋏","cwconint":"∲","cwint":"∱","cylcty":"⌭","dagger":"†","Dagger":"‡","daleth":"ℸ","darr":"↓","Darr":"↡","dArr":"⇓","dash":"‐","Dashv":"⫤","dashv":"⊣","dbkarow":"⤏","dblac":"˝","Dcaron":"Ď","dcaron":"ď","Dcy":"Д","dcy":"д","ddagger":"‡","ddarr":"⇊","DD":"ⅅ","dd":"ⅆ","DDotrahd":"⤑","ddotseq":"⩷","deg":"°","Del":"∇","Delta":"Δ","delta":"δ","demptyv":"⦱","dfisht":"⥿","Dfr":"𝔇","dfr":"𝔡","dHar":"⥥","dharl":"⇃","dharr":"⇂","DiacriticalAcute":"´","DiacriticalDot":"˙","DiacriticalDoubleAcute":"˝","DiacriticalGrave":"`","DiacriticalTilde":"˜","diam":"⋄","diamond":"⋄","Diamond":"⋄","diamondsuit":"♦","diams":"♦","die":"¨","DifferentialD":"ⅆ","digamma":"ϝ","disin":"⋲","div":"÷","divide":"÷","divideontimes":"⋇","divonx":"⋇","DJcy":"Ђ","djcy":"ђ","dlcorn":"⌞","dlcrop":"⌍","dollar":"$","Dopf":"𝔻","dopf":"𝕕","Dot":"¨","dot":"˙","DotDot":"⃜","doteq":"≐","doteqdot":"≑","DotEqual":"≐","dotminus":"∸","dotplus":"∔","dotsquare":"⊡","doublebarwedge":"⌆","DoubleContourIntegral":"∯","DoubleDot":"¨","DoubleDownArrow":"⇓","DoubleLeftArrow":"⇐","DoubleLeftRightArrow":"⇔","DoubleLeftTee":"⫤","DoubleLongLeftArrow":"⟸","DoubleLongLeftRightArrow":"⟺","DoubleLongRightArrow":"⟹","DoubleRightArrow":"⇒","DoubleRightTee":"⊨","DoubleUpArrow":"⇑","DoubleUpDownArrow":"⇕","DoubleVerticalBar":"∥","DownArrowBar":"⤓","downarrow":"↓","DownArrow":"↓","Downarrow":"⇓","DownArrowUpArrow":"⇵","DownBreve":"̑","downdownarrows":"⇊","downharpoonleft":"⇃","downharpoonright":"⇂","DownLeftRightVector":"⥐","DownLeftTeeVector":"⥞","DownLeftVectorBar":"⥖","DownLeftVector":"↽","DownRightTeeVector":"⥟","DownRightVectorBar":"⥗","DownRightVector":"⇁","DownTeeArrow":"↧","DownTee":"⊤","drbkarow":"⤐","drcorn":"⌟","drcrop":"⌌","Dscr":"𝒟","dscr":"𝒹","DScy":"Ѕ","dscy":"ѕ","dsol":"⧶","Dstrok":"Đ","dstrok":"đ","dtdot":"⋱","dtri":"▿","dtrif":"▾","duarr":"⇵","duhar":"⥯","dwangle":"⦦","DZcy":"Џ","dzcy":"џ","dzigrarr":"⟿","Eacute":"É","eacute":"é","easter":"⩮","Ecaron":"Ě","ecaron":"ě","Ecirc":"Ê","ecirc":"ê","ecir":"≖","ecolon":"≕","Ecy":"Э","ecy":"э","eDDot":"⩷","Edot":"Ė","edot":"ė","eDot":"≑","ee":"ⅇ","efDot":"≒","Efr":"𝔈","efr":"𝔢","eg":"⪚","Egrave":"È","egrave":"è","egs":"⪖","egsdot":"⪘","el":"⪙","Element":"∈","elinters":"⏧","ell":"ℓ","els":"⪕","elsdot":"⪗","Emacr":"Ē","emacr":"ē","empty":"∅","emptyset":"∅","EmptySmallSquare":"◻","emptyv":"∅","EmptyVerySmallSquare":"▫","emsp13":" ","emsp14":" ","emsp":" ","ENG":"Ŋ","eng":"ŋ","ensp":" ","Eogon":"Ę","eogon":"ę","Eopf":"𝔼","eopf":"𝕖","epar":"⋕","eparsl":"⧣","eplus":"⩱","epsi":"ε","Epsilon":"Ε","epsilon":"ε","epsiv":"ϵ","eqcirc":"≖","eqcolon":"≕","eqsim":"≂","eqslantgtr":"⪖","eqslantless":"⪕","Equal":"⩵","equals":"=","EqualTilde":"≂","equest":"≟","Equilibrium":"⇌","equiv":"≡","equivDD":"⩸","eqvparsl":"⧥","erarr":"⥱","erDot":"≓","escr":"ℯ","Escr":"ℰ","esdot":"≐","Esim":"⩳","esim":"≂","Eta":"Η","eta":"η","ETH":"Ð","eth":"ð","Euml":"Ë","euml":"ë","euro":"€","excl":"!","exist":"∃","Exists":"∃","expectation":"ℰ","exponentiale":"ⅇ","ExponentialE":"ⅇ","fallingdotseq":"≒","Fcy":"Ф","fcy":"ф","female":"♀","ffilig":"ﬃ","fflig":"ﬀ","ffllig":"ﬄ","Ffr":"𝔉","ffr":"𝔣","filig":"ﬁ","FilledSmallSquare":"◼","FilledVerySmallSquare":"▪","fjlig":"fj","flat":"♭","fllig":"ﬂ","fltns":"▱","fnof":"ƒ","Fopf":"𝔽","fopf":"𝕗","forall":"∀","ForAll":"∀","fork":"⋔","forkv":"⫙","Fouriertrf":"ℱ","fpartint":"⨍","frac12":"½","frac13":"⅓","frac14":"¼","frac15":"⅕","frac16":"⅙","frac18":"⅛","frac23":"⅔","frac25":"⅖","frac34":"¾","frac35":"⅗","frac38":"⅜","frac45":"⅘","frac56":"⅚","frac58":"⅝","frac78":"⅞","frasl":"⁄","frown":"⌢","fscr":"𝒻","Fscr":"ℱ","gacute":"ǵ","Gamma":"Γ","gamma":"γ","Gammad":"Ϝ","gammad":"ϝ","gap":"⪆","Gbreve":"Ğ","gbreve":"ğ","Gcedil":"Ģ","Gcirc":"Ĝ","gcirc":"ĝ","Gcy":"Г","gcy":"г","Gdot":"Ġ","gdot":"ġ","ge":"≥","gE":"≧","gEl":"⪌","gel":"⋛","geq":"≥","geqq":"≧","geqslant":"⩾","gescc":"⪩","ges":"⩾","gesdot":"⪀","gesdoto":"⪂","gesdotol":"⪄","gesl":"⋛︀","gesles":"⪔","Gfr":"𝔊","gfr":"𝔤","gg":"≫","Gg":"⋙","ggg":"⋙","gimel":"ℷ","GJcy":"Ѓ","gjcy":"ѓ","gla":"⪥","gl":"≷","glE":"⪒","glj":"⪤","gnap":"⪊","gnapprox":"⪊","gne":"⪈","gnE":"≩","gneq":"⪈","gneqq":"≩","gnsim":"⋧","Gopf":"𝔾","gopf":"𝕘","grave":"`","GreaterEqual":"≥","GreaterEqualLess":"⋛","GreaterFullEqual":"≧","GreaterGreater":"⪢","GreaterLess":"≷","GreaterSlantEqual":"⩾","GreaterTilde":"≳","Gscr":"𝒢","gscr":"ℊ","gsim":"≳","gsime":"⪎","gsiml":"⪐","gtcc":"⪧","gtcir":"⩺","gt":">","GT":">","Gt":"≫","gtdot":"⋗","gtlPar":"⦕","gtquest":"⩼","gtrapprox":"⪆","gtrarr":"⥸","gtrdot":"⋗","gtreqless":"⋛","gtreqqless":"⪌","gtrless":"≷","gtrsim":"≳","gvertneqq":"≩︀","gvnE":"≩︀","Hacek":"ˇ","hairsp":" ","half":"½","hamilt":"ℋ","HARDcy":"Ъ","hardcy":"ъ","harrcir":"⥈","harr":"↔","hArr":"⇔","harrw":"↭","Hat":"^","hbar":"ℏ","Hcirc":"Ĥ","hcirc":"ĥ","hearts":"♥","heartsuit":"♥","hellip":"…","hercon":"⊹","hfr":"𝔥","Hfr":"ℌ","HilbertSpace":"ℋ","hksearow":"⤥","hkswarow":"⤦","hoarr":"⇿","homtht":"∻","hookleftarrow":"↩","hookrightarrow":"↪","hopf":"𝕙","Hopf":"ℍ","horbar":"―","HorizontalLine":"─","hscr":"𝒽","Hscr":"ℋ","hslash":"ℏ","Hstrok":"Ħ","hstrok":"ħ","HumpDownHump":"≎","HumpEqual":"≏","hybull":"⁃","hyphen":"‐","Iacute":"Í","iacute":"í","ic":"⁣","Icirc":"Î","icirc":"î","Icy":"И","icy":"и","Idot":"İ","IEcy":"Е","iecy":"е","iexcl":"¡","iff":"⇔","ifr":"𝔦","Ifr":"ℑ","Igrave":"Ì","igrave":"ì","ii":"ⅈ","iiiint":"⨌","iiint":"∭","iinfin":"⧜","iiota":"℩","IJlig":"Ĳ","ijlig":"ĳ","Imacr":"Ī","imacr":"ī","image":"ℑ","ImaginaryI":"ⅈ","imagline":"ℐ","imagpart":"ℑ","imath":"ı","Im":"ℑ","imof":"⊷","imped":"Ƶ","Implies":"⇒","incare":"℅","in":"∈","infin":"∞","infintie":"⧝","inodot":"ı","intcal":"⊺","int":"∫","Int":"∬","integers":"ℤ","Integral":"∫","intercal":"⊺","Intersection":"⋂","intlarhk":"⨗","intprod":"⨼","InvisibleComma":"⁣","InvisibleTimes":"⁢","IOcy":"Ё","iocy":"ё","Iogon":"Į","iogon":"į","Iopf":"𝕀","iopf":"𝕚","Iota":"Ι","iota":"ι","iprod":"⨼","iquest":"¿","iscr":"𝒾","Iscr":"ℐ","isin":"∈","isindot":"⋵","isinE":"⋹","isins":"⋴","isinsv":"⋳","isinv":"∈","it":"⁢","Itilde":"Ĩ","itilde":"ĩ","Iukcy":"І","iukcy":"і","Iuml":"Ï","iuml":"ï","Jcirc":"Ĵ","jcirc":"ĵ","Jcy":"Й","jcy":"й","Jfr":"𝔍","jfr":"𝔧","jmath":"ȷ","Jopf":"𝕁","jopf":"𝕛","Jscr":"𝒥","jscr":"𝒿","Jsercy":"Ј","jsercy":"ј","Jukcy":"Є","jukcy":"є","Kappa":"Κ","kappa":"κ","kappav":"ϰ","Kcedil":"Ķ","kcedil":"ķ","Kcy":"К","kcy":"к","Kfr":"𝔎","kfr":"𝔨","kgreen":"ĸ","KHcy":"Х","khcy":"х","KJcy":"Ќ","kjcy":"ќ","Kopf":"𝕂","kopf":"𝕜","Kscr":"𝒦","kscr":"𝓀","lAarr":"⇚","Lacute":"Ĺ","lacute":"ĺ","laemptyv":"⦴","lagran":"ℒ","Lambda":"Λ","lambda":"λ","lang":"⟨","Lang":"⟪","langd":"⦑","langle":"⟨","lap":"⪅","Laplacetrf":"ℒ","laquo":"«","larrb":"⇤","larrbfs":"⤟","larr":"←","Larr":"↞","lArr":"⇐","larrfs":"⤝","larrhk":"↩","larrlp":"↫","larrpl":"⤹","larrsim":"⥳","larrtl":"↢","latail":"⤙","lAtail":"⤛","lat":"⪫","late":"⪭","lates":"⪭︀","lbarr":"⤌","lBarr":"⤎","lbbrk":"❲","lbrace":"{","lbrack":"[","lbrke":"⦋","lbrksld":"⦏","lbrkslu":"⦍","Lcaron":"Ľ","lcaron":"ľ","Lcedil":"Ļ","lcedil":"ļ","lceil":"⌈","lcub":"{","Lcy":"Л","lcy":"л","ldca":"⤶","ldquo":"“","ldquor":"„","ldrdhar":"⥧","ldrushar":"⥋","ldsh":"↲","le":"≤","lE":"≦","LeftAngleBracket":"⟨","LeftArrowBar":"⇤","leftarrow":"←","LeftArrow":"←","Leftarrow":"⇐","LeftArrowRightArrow":"⇆","leftarrowtail":"↢","LeftCeiling":"⌈","LeftDoubleBracket":"⟦","LeftDownTeeVector":"⥡","LeftDownVectorBar":"⥙","LeftDownVector":"⇃","LeftFloor":"⌊","leftharpoondown":"↽","leftharpoonup":"↼","leftleftarrows":"⇇","leftrightarrow":"↔","LeftRightArrow":"↔","Leftrightarrow":"⇔","leftrightarrows":"⇆","leftrightharpoons":"⇋","leftrightsquigarrow":"↭","LeftRightVector":"⥎","LeftTeeArrow":"↤","LeftTee":"⊣","LeftTeeVector":"⥚","leftthreetimes":"⋋","LeftTriangleBar":"⧏","LeftTriangle":"⊲","LeftTriangleEqual":"⊴","LeftUpDownVector":"⥑","LeftUpTeeVector":"⥠","LeftUpVectorBar":"⥘","LeftUpVector":"↿","LeftVectorBar":"⥒","LeftVector":"↼","lEg":"⪋","leg":"⋚","leq":"≤","leqq":"≦","leqslant":"⩽","lescc":"⪨","les":"⩽","lesdot":"⩿","lesdoto":"⪁","lesdotor":"⪃","lesg":"⋚︀","lesges":"⪓","lessapprox":"⪅","lessdot":"⋖","lesseqgtr":"⋚","lesseqqgtr":"⪋","LessEqualGreater":"⋚","LessFullEqual":"≦","LessGreater":"≶","lessgtr":"≶","LessLess":"⪡","lesssim":"≲","LessSlantEqual":"⩽","LessTilde":"≲","lfisht":"⥼","lfloor":"⌊","Lfr":"𝔏","lfr":"𝔩","lg":"≶","lgE":"⪑","lHar":"⥢","lhard":"↽","lharu":"↼","lharul":"⥪","lhblk":"▄","LJcy":"Љ","ljcy":"љ","llarr":"⇇","ll":"≪","Ll":"⋘","llcorner":"⌞","Lleftarrow":"⇚","llhard":"⥫","lltri":"◺","Lmidot":"Ŀ","lmidot":"ŀ","lmoustache":"⎰","lmoust":"⎰","lnap":"⪉","lnapprox":"⪉","lne":"⪇","lnE":"≨","lneq":"⪇","lneqq":"≨","lnsim":"⋦","loang":"⟬","loarr":"⇽","lobrk":"⟦","longleftarrow":"⟵","LongLeftArrow":"⟵","Longleftarrow":"⟸","longleftrightarrow":"⟷","LongLeftRightArrow":"⟷","Longleftrightarrow":"⟺","longmapsto":"⟼","longrightarrow":"⟶","LongRightArrow":"⟶","Longrightarrow":"⟹","looparrowleft":"↫","looparrowright":"↬","lopar":"⦅","Lopf":"𝕃","lopf":"𝕝","loplus":"⨭","lotimes":"⨴","lowast":"∗","lowbar":"_","LowerLeftArrow":"↙","LowerRightArrow":"↘","loz":"◊","lozenge":"◊","lozf":"⧫","lpar":"(","lparlt":"⦓","lrarr":"⇆","lrcorner":"⌟","lrhar":"⇋","lrhard":"⥭","lrm":"‎","lrtri":"⊿","lsaquo":"‹","lscr":"𝓁","Lscr":"ℒ","lsh":"↰","Lsh":"↰","lsim":"≲","lsime":"⪍","lsimg":"⪏","lsqb":"[","lsquo":"‘","lsquor":"‚","Lstrok":"Ł","lstrok":"ł","ltcc":"⪦","ltcir":"⩹","lt":"<","LT":"<","Lt":"≪","ltdot":"⋖","lthree":"⋋","ltimes":"⋉","ltlarr":"⥶","ltquest":"⩻","ltri":"◃","ltrie":"⊴","ltrif":"◂","ltrPar":"⦖","lurdshar":"⥊","luruhar":"⥦","lvertneqq":"≨︀","lvnE":"≨︀","macr":"¯","male":"♂","malt":"✠","maltese":"✠","Map":"⤅","map":"↦","mapsto":"↦","mapstodown":"↧","mapstoleft":"↤","mapstoup":"↥","marker":"▮","mcomma":"⨩","Mcy":"М","mcy":"м","mdash":"—","mDDot":"∺","measuredangle":"∡","MediumSpace":" ","Mellintrf":"ℳ","Mfr":"𝔐","mfr":"𝔪","mho":"℧","micro":"µ","midast":"*","midcir":"⫰","mid":"∣","middot":"·","minusb":"⊟","minus":"−","minusd":"∸","minusdu":"⨪","MinusPlus":"∓","mlcp":"⫛","mldr":"…","mnplus":"∓","models":"⊧","Mopf":"𝕄","mopf":"𝕞","mp":"∓","mscr":"𝓂","Mscr":"ℳ","mstpos":"∾","Mu":"Μ","mu":"μ","multimap":"⊸","mumap":"⊸","nabla":"∇","Nacute":"Ń","nacute":"ń","nang":"∠⃒","nap":"≉","napE":"⩰̸","napid":"≋̸","napos":"ŉ","napprox":"≉","natural":"♮","naturals":"ℕ","natur":"♮","nbsp":" ","nbump":"≎̸","nbumpe":"≏̸","ncap":"⩃","Ncaron":"Ň","ncaron":"ň","Ncedil":"Ņ","ncedil":"ņ","ncong":"≇","ncongdot":"⩭̸","ncup":"⩂","Ncy":"Н","ncy":"н","ndash":"–","nearhk":"⤤","nearr":"↗","neArr":"⇗","nearrow":"↗","ne":"≠","nedot":"≐̸","NegativeMediumSpace":"​","NegativeThickSpace":"​","NegativeThinSpace":"​","NegativeVeryThinSpace":"​","nequiv":"≢","nesear":"⤨","nesim":"≂̸","NestedGreaterGreater":"≫","NestedLessLess":"≪","NewLine":"\n","nexist":"∄","nexists":"∄","Nfr":"𝔑","nfr":"𝔫","ngE":"≧̸","nge":"≱","ngeq":"≱","ngeqq":"≧̸","ngeqslant":"⩾̸","nges":"⩾̸","nGg":"⋙̸","ngsim":"≵","nGt":"≫⃒","ngt":"≯","ngtr":"≯","nGtv":"≫̸","nharr":"↮","nhArr":"⇎","nhpar":"⫲","ni":"∋","nis":"⋼","nisd":"⋺","niv":"∋","NJcy":"Њ","njcy":"њ","nlarr":"↚","nlArr":"⇍","nldr":"‥","nlE":"≦̸","nle":"≰","nleftarrow":"↚","nLeftarrow":"⇍","nleftrightarrow":"↮","nLeftrightarrow":"⇎","nleq":"≰","nleqq":"≦̸","nleqslant":"⩽̸","nles":"⩽̸","nless":"≮","nLl":"⋘̸","nlsim":"≴","nLt":"≪⃒","nlt":"≮","nltri":"⋪","nltrie":"⋬","nLtv":"≪̸","nmid":"∤","NoBreak":"⁠","NonBreakingSpace":" ","nopf":"𝕟","Nopf":"ℕ","Not":"⫬","not":"¬","NotCongruent":"≢","NotCupCap":"≭","NotDoubleVerticalBar":"∦","NotElement":"∉","NotEqual":"≠","NotEqualTilde":"≂̸","NotExists":"∄","NotGreater":"≯","NotGreaterEqual":"≱","NotGreaterFullEqual":"≧̸","NotGreaterGreater":"≫̸","NotGreaterLess":"≹","NotGreaterSlantEqual":"⩾̸","NotGreaterTilde":"≵","NotHumpDownHump":"≎̸","NotHumpEqual":"≏̸","notin":"∉","notindot":"⋵̸","notinE":"⋹̸","notinva":"∉","notinvb":"⋷","notinvc":"⋶","NotLeftTriangleBar":"⧏̸","NotLeftTriangle":"⋪","NotLeftTriangleEqual":"⋬","NotLess":"≮","NotLessEqual":"≰","NotLessGreater":"≸","NotLessLess":"≪̸","NotLessSlantEqual":"⩽̸","NotLessTilde":"≴","NotNestedGreaterGreater":"⪢̸","NotNestedLessLess":"⪡̸","notni":"∌","notniva":"∌","notnivb":"⋾","notnivc":"⋽","NotPrecedes":"⊀","NotPrecedesEqual":"⪯̸","NotPrecedesSlantEqual":"⋠","NotReverseElement":"∌","NotRightTriangleBar":"⧐̸","NotRightTriangle":"⋫","NotRightTriangleEqual":"⋭","NotSquareSubset":"⊏̸","NotSquareSubsetEqual":"⋢","NotSquareSuperset":"⊐̸","NotSquareSupersetEqual":"⋣","NotSubset":"⊂⃒","NotSubsetEqual":"⊈","NotSucceeds":"⊁","NotSucceedsEqual":"⪰̸","NotSucceedsSlantEqual":"⋡","NotSucceedsTilde":"≿̸","NotSuperset":"⊃⃒","NotSupersetEqual":"⊉","NotTilde":"≁","NotTildeEqual":"≄","NotTildeFullEqual":"≇","NotTildeTilde":"≉","NotVerticalBar":"∤","nparallel":"∦","npar":"∦","nparsl":"⫽⃥","npart":"∂̸","npolint":"⨔","npr":"⊀","nprcue":"⋠","nprec":"⊀","npreceq":"⪯̸","npre":"⪯̸","nrarrc":"⤳̸","nrarr":"↛","nrArr":"⇏","nrarrw":"↝̸","nrightarrow":"↛","nRightarrow":"⇏","nrtri":"⋫","nrtrie":"⋭","nsc":"⊁","nsccue":"⋡","nsce":"⪰̸","Nscr":"𝒩","nscr":"𝓃","nshortmid":"∤","nshortparallel":"∦","nsim":"≁","nsime":"≄","nsimeq":"≄","nsmid":"∤","nspar":"∦","nsqsube":"⋢","nsqsupe":"⋣","nsub":"⊄","nsubE":"⫅̸","nsube":"⊈","nsubset":"⊂⃒","nsubseteq":"⊈","nsubseteqq":"⫅̸","nsucc":"⊁","nsucceq":"⪰̸","nsup":"⊅","nsupE":"⫆̸","nsupe":"⊉","nsupset":"⊃⃒","nsupseteq":"⊉","nsupseteqq":"⫆̸","ntgl":"≹","Ntilde":"Ñ","ntilde":"ñ","ntlg":"≸","ntriangleleft":"⋪","ntrianglelefteq":"⋬","ntriangleright":"⋫","ntrianglerighteq":"⋭","Nu":"Ν","nu":"ν","num":"#","numero":"№","numsp":" ","nvap":"≍⃒","nvdash":"⊬","nvDash":"⊭","nVdash":"⊮","nVDash":"⊯","nvge":"≥⃒","nvgt":">⃒","nvHarr":"⤄","nvinfin":"⧞","nvlArr":"⤂","nvle":"≤⃒","nvlt":"<⃒","nvltrie":"⊴⃒","nvrArr":"⤃","nvrtrie":"⊵⃒","nvsim":"∼⃒","nwarhk":"⤣","nwarr":"↖","nwArr":"⇖","nwarrow":"↖","nwnear":"⤧","Oacute":"Ó","oacute":"ó","oast":"⊛","Ocirc":"Ô","ocirc":"ô","ocir":"⊚","Ocy":"О","ocy":"о","odash":"⊝","Odblac":"Ő","odblac":"ő","odiv":"⨸","odot":"⊙","odsold":"⦼","OElig":"Œ","oelig":"œ","ofcir":"⦿","Ofr":"𝔒","ofr":"𝔬","ogon":"˛","Ograve":"Ò","ograve":"ò","ogt":"⧁","ohbar":"⦵","ohm":"Ω","oint":"∮","olarr":"↺","olcir":"⦾","olcross":"⦻","oline":"‾","olt":"⧀","Omacr":"Ō","omacr":"ō","Omega":"Ω","omega":"ω","Omicron":"Ο","omicron":"ο","omid":"⦶","ominus":"⊖","Oopf":"𝕆","oopf":"𝕠","opar":"⦷","OpenCurlyDoubleQuote":"“","OpenCurlyQuote":"‘","operp":"⦹","oplus":"⊕","orarr":"↻","Or":"⩔","or":"∨","ord":"⩝","order":"ℴ","orderof":"ℴ","ordf":"ª","ordm":"º","origof":"⊶","oror":"⩖","orslope":"⩗","orv":"⩛","oS":"Ⓢ","Oscr":"𝒪","oscr":"ℴ","Oslash":"Ø","oslash":"ø","osol":"⊘","Otilde":"Õ","otilde":"õ","otimesas":"⨶","Otimes":"⨷","otimes":"⊗","Ouml":"Ö","ouml":"ö","ovbar":"⌽","OverBar":"‾","OverBrace":"⏞","OverBracket":"⎴","OverParenthesis":"⏜","para":"¶","parallel":"∥","par":"∥","parsim":"⫳","parsl":"⫽","part":"∂","PartialD":"∂","Pcy":"П","pcy":"п","percnt":"%","period":".","permil":"‰","perp":"⊥","pertenk":"‱","Pfr":"𝔓","pfr":"𝔭","Phi":"Φ","phi":"φ","phiv":"ϕ","phmmat":"ℳ","phone":"☎","Pi":"Π","pi":"π","pitchfork":"⋔","piv":"ϖ","planck":"ℏ","planckh":"ℎ","plankv":"ℏ","plusacir":"⨣","plusb":"⊞","pluscir":"⨢","plus":"+","plusdo":"∔","plusdu":"⨥","pluse":"⩲","PlusMinus":"±","plusmn":"±","plussim":"⨦","plustwo":"⨧","pm":"±","Poincareplane":"ℌ","pointint":"⨕","popf":"𝕡","Popf":"ℙ","pound":"£","prap":"⪷","Pr":"⪻","pr":"≺","prcue":"≼","precapprox":"⪷","prec":"≺","preccurlyeq":"≼","Precedes":"≺","PrecedesEqual":"⪯","PrecedesSlantEqual":"≼","PrecedesTilde":"≾","preceq":"⪯","precnapprox":"⪹","precneqq":"⪵","precnsim":"⋨","pre":"⪯","prE":"⪳","precsim":"≾","prime":"′","Prime":"″","primes":"ℙ","prnap":"⪹","prnE":"⪵","prnsim":"⋨","prod":"∏","Product":"∏","profalar":"⌮","profline":"⌒","profsurf":"⌓","prop":"∝","Proportional":"∝","Proportion":"∷","propto":"∝","prsim":"≾","prurel":"⊰","Pscr":"𝒫","pscr":"𝓅","Psi":"Ψ","psi":"ψ","puncsp":" ","Qfr":"𝔔","qfr":"𝔮","qint":"⨌","qopf":"𝕢","Qopf":"ℚ","qprime":"⁗","Qscr":"𝒬","qscr":"𝓆","quaternions":"ℍ","quatint":"⨖","quest":"?","questeq":"≟","quot":"\"","QUOT":"\"","rAarr":"⇛","race":"∽̱","Racute":"Ŕ","racute":"ŕ","radic":"√","raemptyv":"⦳","rang":"⟩","Rang":"⟫","rangd":"⦒","range":"⦥","rangle":"⟩","raquo":"»","rarrap":"⥵","rarrb":"⇥","rarrbfs":"⤠","rarrc":"⤳","rarr":"→","Rarr":"↠","rArr":"⇒","rarrfs":"⤞","rarrhk":"↪","rarrlp":"↬","rarrpl":"⥅","rarrsim":"⥴","Rarrtl":"⤖","rarrtl":"↣","rarrw":"↝","ratail":"⤚","rAtail":"⤜","ratio":"∶","rationals":"ℚ","rbarr":"⤍","rBarr":"⤏","RBarr":"⤐","rbbrk":"❳","rbrace":"}","rbrack":"]","rbrke":"⦌","rbrksld":"⦎","rbrkslu":"⦐","Rcaron":"Ř","rcaron":"ř","Rcedil":"Ŗ","rcedil":"ŗ","rceil":"⌉","rcub":"}","Rcy":"Р","rcy":"р","rdca":"⤷","rdldhar":"⥩","rdquo":"”","rdquor":"”","rdsh":"↳","real":"ℜ","realine":"ℛ","realpart":"ℜ","reals":"ℝ","Re":"ℜ","rect":"▭","reg":"®","REG":"®","ReverseElement":"∋","ReverseEquilibrium":"⇋","ReverseUpEquilibrium":"⥯","rfisht":"⥽","rfloor":"⌋","rfr":"𝔯","Rfr":"ℜ","rHar":"⥤","rhard":"⇁","rharu":"⇀","rharul":"⥬","Rho":"Ρ","rho":"ρ","rhov":"ϱ","RightAngleBracket":"⟩","RightArrowBar":"⇥","rightarrow":"→","RightArrow":"→","Rightarrow":"⇒","RightArrowLeftArrow":"⇄","rightarrowtail":"↣","RightCeiling":"⌉","RightDoubleBracket":"⟧","RightDownTeeVector":"⥝","RightDownVectorBar":"⥕","RightDownVector":"⇂","RightFloor":"⌋","rightharpoondown":"⇁","rightharpoonup":"⇀","rightleftarrows":"⇄","rightleftharpoons":"⇌","rightrightarrows":"⇉","rightsquigarrow":"↝","RightTeeArrow":"↦","RightTee":"⊢","RightTeeVector":"⥛","rightthreetimes":"⋌","RightTriangleBar":"⧐","RightTriangle":"⊳","RightTriangleEqual":"⊵","RightUpDownVector":"⥏","RightUpTeeVector":"⥜","RightUpVectorBar":"⥔","RightUpVector":"↾","RightVectorBar":"⥓","RightVector":"⇀","ring":"˚","risingdotseq":"≓","rlarr":"⇄","rlhar":"⇌","rlm":"‏","rmoustache":"⎱","rmoust":"⎱","rnmid":"⫮","roang":"⟭","roarr":"⇾","robrk":"⟧","ropar":"⦆","ropf":"𝕣","Ropf":"ℝ","roplus":"⨮","rotimes":"⨵","RoundImplies":"⥰","rpar":")","rpargt":"⦔","rppolint":"⨒","rrarr":"⇉","Rrightarrow":"⇛","rsaquo":"›","rscr":"𝓇","Rscr":"ℛ","rsh":"↱","Rsh":"↱","rsqb":"]","rsquo":"’","rsquor":"’","rthree":"⋌","rtimes":"⋊","rtri":"▹","rtrie":"⊵","rtrif":"▸","rtriltri":"⧎","RuleDelayed":"⧴","ruluhar":"⥨","rx":"℞","Sacute":"Ś","sacute":"ś","sbquo":"‚","scap":"⪸","Scaron":"Š","scaron":"š","Sc":"⪼","sc":"≻","sccue":"≽","sce":"⪰","scE":"⪴","Scedil":"Ş","scedil":"ş","Scirc":"Ŝ","scirc":"ŝ","scnap":"⪺","scnE":"⪶","scnsim":"⋩","scpolint":"⨓","scsim":"≿","Scy":"С","scy":"с","sdotb":"⊡","sdot":"⋅","sdote":"⩦","searhk":"⤥","searr":"↘","seArr":"⇘","searrow":"↘","sect":"§","semi":";","seswar":"⤩","setminus":"∖","setmn":"∖","sext":"✶","Sfr":"𝔖","sfr":"𝔰","sfrown":"⌢","sharp":"♯","SHCHcy":"Щ","shchcy":"щ","SHcy":"Ш","shcy":"ш","ShortDownArrow":"↓","ShortLeftArrow":"←","shortmid":"∣","shortparallel":"∥","ShortRightArrow":"→","ShortUpArrow":"↑","shy":"­","Sigma":"Σ","sigma":"σ","sigmaf":"ς","sigmav":"ς","sim":"∼","simdot":"⩪","sime":"≃","simeq":"≃","simg":"⪞","simgE":"⪠","siml":"⪝","simlE":"⪟","simne":"≆","simplus":"⨤","simrarr":"⥲","slarr":"←","SmallCircle":"∘","smallsetminus":"∖","smashp":"⨳","smeparsl":"⧤","smid":"∣","smile":"⌣","smt":"⪪","smte":"⪬","smtes":"⪬︀","SOFTcy":"Ь","softcy":"ь","solbar":"⌿","solb":"⧄","sol":"/","Sopf":"𝕊","sopf":"𝕤","spades":"♠","spadesuit":"♠","spar":"∥","sqcap":"⊓","sqcaps":"⊓︀","sqcup":"⊔","sqcups":"⊔︀","Sqrt":"√","sqsub":"⊏","sqsube":"⊑","sqsubset":"⊏","sqsubseteq":"⊑","sqsup":"⊐","sqsupe":"⊒","sqsupset":"⊐","sqsupseteq":"⊒","square":"□","Square":"□","SquareIntersection":"⊓","SquareSubset":"⊏","SquareSubsetEqual":"⊑","SquareSuperset":"⊐","SquareSupersetEqual":"⊒","SquareUnion":"⊔","squarf":"▪","squ":"□","squf":"▪","srarr":"→","Sscr":"𝒮","sscr":"𝓈","ssetmn":"∖","ssmile":"⌣","sstarf":"⋆","Star":"⋆","star":"☆","starf":"★","straightepsilon":"ϵ","straightphi":"ϕ","strns":"¯","sub":"⊂","Sub":"⋐","subdot":"⪽","subE":"⫅","sube":"⊆","subedot":"⫃","submult":"⫁","subnE":"⫋","subne":"⊊","subplus":"⪿","subrarr":"⥹","subset":"⊂","Subset":"⋐","subseteq":"⊆","subseteqq":"⫅","SubsetEqual":"⊆","subsetneq":"⊊","subsetneqq":"⫋","subsim":"⫇","subsub":"⫕","subsup":"⫓","succapprox":"⪸","succ":"≻","succcurlyeq":"≽","Succeeds":"≻","SucceedsEqual":"⪰","SucceedsSlantEqual":"≽","SucceedsTilde":"≿","succeq":"⪰","succnapprox":"⪺","succneqq":"⪶","succnsim":"⋩","succsim":"≿","SuchThat":"∋","sum":"∑","Sum":"∑","sung":"♪","sup1":"¹","sup2":"²","sup3":"³","sup":"⊃","Sup":"⋑","supdot":"⪾","supdsub":"⫘","supE":"⫆","supe":"⊇","supedot":"⫄","Superset":"⊃","SupersetEqual":"⊇","suphsol":"⟉","suphsub":"⫗","suplarr":"⥻","supmult":"⫂","supnE":"⫌","supne":"⊋","supplus":"⫀","supset":"⊃","Supset":"⋑","supseteq":"⊇","supseteqq":"⫆","supsetneq":"⊋","supsetneqq":"⫌","supsim":"⫈","supsub":"⫔","supsup":"⫖","swarhk":"⤦","swarr":"↙","swArr":"⇙","swarrow":"↙","swnwar":"⤪","szlig":"ß","Tab":"\t","target":"⌖","Tau":"Τ","tau":"τ","tbrk":"⎴","Tcaron":"Ť","tcaron":"ť","Tcedil":"Ţ","tcedil":"ţ","Tcy":"Т","tcy":"т","tdot":"⃛","telrec":"⌕","Tfr":"𝔗","tfr":"𝔱","there4":"∴","therefore":"∴","Therefore":"∴","Theta":"Θ","theta":"θ","thetasym":"ϑ","thetav":"ϑ","thickapprox":"≈","thicksim":"∼","ThickSpace":"  ","ThinSpace":" ","thinsp":" ","thkap":"≈","thksim":"∼","THORN":"Þ","thorn":"þ","tilde":"˜","Tilde":"∼","TildeEqual":"≃","TildeFullEqual":"≅","TildeTilde":"≈","timesbar":"⨱","timesb":"⊠","times":"×","timesd":"⨰","tint":"∭","toea":"⤨","topbot":"⌶","topcir":"⫱","top":"⊤","Topf":"𝕋","topf":"𝕥","topfork":"⫚","tosa":"⤩","tprime":"‴","trade":"™","TRADE":"™","triangle":"▵","triangledown":"▿","triangleleft":"◃","trianglelefteq":"⊴","triangleq":"≜","triangleright":"▹","trianglerighteq":"⊵","tridot":"◬","trie":"≜","triminus":"⨺","TripleDot":"⃛","triplus":"⨹","trisb":"⧍","tritime":"⨻","trpezium":"⏢","Tscr":"𝒯","tscr":"𝓉","TScy":"Ц","tscy":"ц","TSHcy":"Ћ","tshcy":"ћ","Tstrok":"Ŧ","tstrok":"ŧ","twixt":"≬","twoheadleftarrow":"↞","twoheadrightarrow":"↠","Uacute":"Ú","uacute":"ú","uarr":"↑","Uarr":"↟","uArr":"⇑","Uarrocir":"⥉","Ubrcy":"Ў","ubrcy":"ў","Ubreve":"Ŭ","ubreve":"ŭ","Ucirc":"Û","ucirc":"û","Ucy":"У","ucy":"у","udarr":"⇅","Udblac":"Ű","udblac":"ű","udhar":"⥮","ufisht":"⥾","Ufr":"𝔘","ufr":"𝔲","Ugrave":"Ù","ugrave":"ù","uHar":"⥣","uharl":"↿","uharr":"↾","uhblk":"▀","ulcorn":"⌜","ulcorner":"⌜","ulcrop":"⌏","ultri":"◸","Umacr":"Ū","umacr":"ū","uml":"¨","UnderBar":"_","UnderBrace":"⏟","UnderBracket":"⎵","UnderParenthesis":"⏝","Union":"⋃","UnionPlus":"⊎","Uogon":"Ų","uogon":"ų","Uopf":"𝕌","uopf":"𝕦","UpArrowBar":"⤒","uparrow":"↑","UpArrow":"↑","Uparrow":"⇑","UpArrowDownArrow":"⇅","updownarrow":"↕","UpDownArrow":"↕","Updownarrow":"⇕","UpEquilibrium":"⥮","upharpoonleft":"↿","upharpoonright":"↾","uplus":"⊎","UpperLeftArrow":"↖","UpperRightArrow":"↗","upsi":"υ","Upsi":"ϒ","upsih":"ϒ","Upsilon":"Υ","upsilon":"υ","UpTeeArrow":"↥","UpTee":"⊥","upuparrows":"⇈","urcorn":"⌝","urcorner":"⌝","urcrop":"⌎","Uring":"Ů","uring":"ů","urtri":"◹","Uscr":"𝒰","uscr":"𝓊","utdot":"⋰","Utilde":"Ũ","utilde":"ũ","utri":"▵","utrif":"▴","uuarr":"⇈","Uuml":"Ü","uuml":"ü","uwangle":"⦧","vangrt":"⦜","varepsilon":"ϵ","varkappa":"ϰ","varnothing":"∅","varphi":"ϕ","varpi":"ϖ","varpropto":"∝","varr":"↕","vArr":"⇕","varrho":"ϱ","varsigma":"ς","varsubsetneq":"⊊︀","varsubsetneqq":"⫋︀","varsupsetneq":"⊋︀","varsupsetneqq":"⫌︀","vartheta":"ϑ","vartriangleleft":"⊲","vartriangleright":"⊳","vBar":"⫨","Vbar":"⫫","vBarv":"⫩","Vcy":"В","vcy":"в","vdash":"⊢","vDash":"⊨","Vdash":"⊩","VDash":"⊫","Vdashl":"⫦","veebar":"⊻","vee":"∨","Vee":"⋁","veeeq":"≚","vellip":"⋮","verbar":"|","Verbar":"‖","vert":"|","Vert":"‖","VerticalBar":"∣","VerticalLine":"|","VerticalSeparator":"❘","VerticalTilde":"≀","VeryThinSpace":" ","Vfr":"𝔙","vfr":"𝔳","vltri":"⊲","vnsub":"⊂⃒","vnsup":"⊃⃒","Vopf":"𝕍","vopf":"𝕧","vprop":"∝","vrtri":"⊳","Vscr":"𝒱","vscr":"𝓋","vsubnE":"⫋︀","vsubne":"⊊︀","vsupnE":"⫌︀","vsupne":"⊋︀","Vvdash":"⊪","vzigzag":"⦚","Wcirc":"Ŵ","wcirc":"ŵ","wedbar":"⩟","wedge":"∧","Wedge":"⋀","wedgeq":"≙","weierp":"℘","Wfr":"𝔚","wfr":"𝔴","Wopf":"𝕎","wopf":"𝕨","wp":"℘","wr":"≀","wreath":"≀","Wscr":"𝒲","wscr":"𝓌","xcap":"⋂","xcirc":"◯","xcup":"⋃","xdtri":"▽","Xfr":"𝔛","xfr":"𝔵","xharr":"⟷","xhArr":"⟺","Xi":"Ξ","xi":"ξ","xlarr":"⟵","xlArr":"⟸","xmap":"⟼","xnis":"⋻","xodot":"⨀","Xopf":"𝕏","xopf":"𝕩","xoplus":"⨁","xotime":"⨂","xrarr":"⟶","xrArr":"⟹","Xscr":"𝒳","xscr":"𝓍","xsqcup":"⨆","xuplus":"⨄","xutri":"△","xvee":"⋁","xwedge":"⋀","Yacute":"Ý","yacute":"ý","YAcy":"Я","yacy":"я","Ycirc":"Ŷ","ycirc":"ŷ","Ycy":"Ы","ycy":"ы","yen":"¥","Yfr":"𝔜","yfr":"𝔶","YIcy":"Ї","yicy":"ї","Yopf":"𝕐","yopf":"𝕪","Yscr":"𝒴","yscr":"𝓎","YUcy":"Ю","yucy":"ю","yuml":"ÿ","Yuml":"Ÿ","Zacute":"Ź","zacute":"ź","Zcaron":"Ž","zcaron":"ž","Zcy":"З","zcy":"з","Zdot":"Ż","zdot":"ż","zeetrf":"ℨ","ZeroWidthSpace":"​","Zeta":"Ζ","zeta":"ζ","zfr":"𝔷","Zfr":"ℨ","ZHcy":"Ж","zhcy":"ж","zigrarr":"⇝","zopf":"𝕫","Zopf":"ℤ","Zscr":"𝒵","zscr":"𝓏","zwj":"‍","zwnj":"‌"}
 
-},{}],31:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5049,7 +5335,7 @@ function eventTargetAgnosticAddListener(emitter, name, listener, flags) {
   }
 }
 
-},{}],32:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 module.exports = stringify
 stringify.default = stringify
 stringify.stable = deterministicStringify
@@ -5280,7 +5566,7 @@ function replaceGetterValues (replacer) {
   }
 }
 
-},{}],33:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 (function (global){(function (){
 var topLevel = typeof global !== 'undefined' ? global :
     typeof window !== 'undefined' ? window : {}
@@ -5301,7 +5587,7 @@ if (typeof document !== 'undefined') {
 module.exports = doccy;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"min-document":12}],34:[function(require,module,exports){
+},{"min-document":15}],37:[function(require,module,exports){
 (function (global){(function (){
 var win;
 
@@ -5318,7 +5604,7 @@ if (typeof window !== "undefined") {
 module.exports = win;
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],35:[function(require,module,exports){
+},{}],38:[function(require,module,exports){
 var deepFreezeEs6 = {exports: {}};
 
 function deepFreeze(obj) {
@@ -7878,7 +8164,7 @@ module.exports = highlight;
 highlight.HighlightJS = highlight;
 highlight.default = highlight;
 
-},{}],36:[function(require,module,exports){
+},{}],39:[function(require,module,exports){
 var hljs = require('./core');
 
 hljs.registerLanguage('1c', require('./languages/1c'));
@@ -8077,7 +8363,7 @@ hljs.registerLanguage('zephir', require('./languages/zephir'));
 hljs.HighlightJS = hljs
 hljs.default = hljs
 module.exports = hljs;
-},{"./core":35,"./languages/1c":37,"./languages/abnf":38,"./languages/accesslog":39,"./languages/actionscript":40,"./languages/ada":41,"./languages/angelscript":42,"./languages/apache":43,"./languages/applescript":44,"./languages/arcade":45,"./languages/arduino":46,"./languages/armasm":47,"./languages/asciidoc":48,"./languages/aspectj":49,"./languages/autohotkey":50,"./languages/autoit":51,"./languages/avrasm":52,"./languages/awk":53,"./languages/axapta":54,"./languages/bash":55,"./languages/basic":56,"./languages/bnf":57,"./languages/brainfuck":58,"./languages/c":59,"./languages/cal":60,"./languages/capnproto":61,"./languages/ceylon":62,"./languages/clean":63,"./languages/clojure":65,"./languages/clojure-repl":64,"./languages/cmake":66,"./languages/coffeescript":67,"./languages/coq":68,"./languages/cos":69,"./languages/cpp":70,"./languages/crmsh":71,"./languages/crystal":72,"./languages/csharp":73,"./languages/csp":74,"./languages/css":75,"./languages/d":76,"./languages/dart":77,"./languages/delphi":78,"./languages/diff":79,"./languages/django":80,"./languages/dns":81,"./languages/dockerfile":82,"./languages/dos":83,"./languages/dsconfig":84,"./languages/dts":85,"./languages/dust":86,"./languages/ebnf":87,"./languages/elixir":88,"./languages/elm":89,"./languages/erb":90,"./languages/erlang":92,"./languages/erlang-repl":91,"./languages/excel":93,"./languages/fix":94,"./languages/flix":95,"./languages/fortran":96,"./languages/fsharp":97,"./languages/gams":98,"./languages/gauss":99,"./languages/gcode":100,"./languages/gherkin":101,"./languages/glsl":102,"./languages/gml":103,"./languages/go":104,"./languages/golo":105,"./languages/gradle":106,"./languages/graphql":107,"./languages/groovy":108,"./languages/haml":109,"./languages/handlebars":110,"./languages/haskell":111,"./languages/haxe":112,"./languages/hsp":113,"./languages/http":114,"./languages/hy":115,"./languages/inform7":116,"./languages/ini":117,"./languages/irpf90":118,"./languages/isbl":119,"./languages/java":120,"./languages/javascript":121,"./languages/jboss-cli":122,"./languages/json":123,"./languages/julia":125,"./languages/julia-repl":124,"./languages/kotlin":126,"./languages/lasso":127,"./languages/latex":128,"./languages/ldif":129,"./languages/leaf":130,"./languages/less":131,"./languages/lisp":132,"./languages/livecodeserver":133,"./languages/livescript":134,"./languages/llvm":135,"./languages/lsl":136,"./languages/lua":137,"./languages/makefile":138,"./languages/markdown":139,"./languages/mathematica":140,"./languages/matlab":141,"./languages/maxima":142,"./languages/mel":143,"./languages/mercury":144,"./languages/mipsasm":145,"./languages/mizar":146,"./languages/mojolicious":147,"./languages/monkey":148,"./languages/moonscript":149,"./languages/n1ql":150,"./languages/nestedtext":151,"./languages/nginx":152,"./languages/nim":153,"./languages/nix":154,"./languages/node-repl":155,"./languages/nsis":156,"./languages/objectivec":157,"./languages/ocaml":158,"./languages/openscad":159,"./languages/oxygene":160,"./languages/parser3":161,"./languages/perl":162,"./languages/pf":163,"./languages/pgsql":164,"./languages/php":166,"./languages/php-template":165,"./languages/plaintext":167,"./languages/pony":168,"./languages/powershell":169,"./languages/processing":170,"./languages/profile":171,"./languages/prolog":172,"./languages/properties":173,"./languages/protobuf":174,"./languages/puppet":175,"./languages/purebasic":176,"./languages/python":178,"./languages/python-repl":177,"./languages/q":179,"./languages/qml":180,"./languages/r":181,"./languages/reasonml":182,"./languages/rib":183,"./languages/roboconf":184,"./languages/routeros":185,"./languages/rsl":186,"./languages/ruby":187,"./languages/ruleslanguage":188,"./languages/rust":189,"./languages/sas":190,"./languages/scala":191,"./languages/scheme":192,"./languages/scilab":193,"./languages/scss":194,"./languages/shell":195,"./languages/smali":196,"./languages/smalltalk":197,"./languages/sml":198,"./languages/sqf":199,"./languages/sql":200,"./languages/stan":201,"./languages/stata":202,"./languages/step21":203,"./languages/stylus":204,"./languages/subunit":205,"./languages/swift":206,"./languages/taggerscript":207,"./languages/tap":208,"./languages/tcl":209,"./languages/thrift":210,"./languages/tp":211,"./languages/twig":212,"./languages/typescript":213,"./languages/vala":214,"./languages/vbnet":215,"./languages/vbscript":217,"./languages/vbscript-html":216,"./languages/verilog":218,"./languages/vhdl":219,"./languages/vim":220,"./languages/wasm":221,"./languages/wren":222,"./languages/x86asm":223,"./languages/xl":224,"./languages/xml":225,"./languages/xquery":226,"./languages/yaml":227,"./languages/zephir":228}],37:[function(require,module,exports){
+},{"./core":38,"./languages/1c":40,"./languages/abnf":41,"./languages/accesslog":42,"./languages/actionscript":43,"./languages/ada":44,"./languages/angelscript":45,"./languages/apache":46,"./languages/applescript":47,"./languages/arcade":48,"./languages/arduino":49,"./languages/armasm":50,"./languages/asciidoc":51,"./languages/aspectj":52,"./languages/autohotkey":53,"./languages/autoit":54,"./languages/avrasm":55,"./languages/awk":56,"./languages/axapta":57,"./languages/bash":58,"./languages/basic":59,"./languages/bnf":60,"./languages/brainfuck":61,"./languages/c":62,"./languages/cal":63,"./languages/capnproto":64,"./languages/ceylon":65,"./languages/clean":66,"./languages/clojure":68,"./languages/clojure-repl":67,"./languages/cmake":69,"./languages/coffeescript":70,"./languages/coq":71,"./languages/cos":72,"./languages/cpp":73,"./languages/crmsh":74,"./languages/crystal":75,"./languages/csharp":76,"./languages/csp":77,"./languages/css":78,"./languages/d":79,"./languages/dart":80,"./languages/delphi":81,"./languages/diff":82,"./languages/django":83,"./languages/dns":84,"./languages/dockerfile":85,"./languages/dos":86,"./languages/dsconfig":87,"./languages/dts":88,"./languages/dust":89,"./languages/ebnf":90,"./languages/elixir":91,"./languages/elm":92,"./languages/erb":93,"./languages/erlang":95,"./languages/erlang-repl":94,"./languages/excel":96,"./languages/fix":97,"./languages/flix":98,"./languages/fortran":99,"./languages/fsharp":100,"./languages/gams":101,"./languages/gauss":102,"./languages/gcode":103,"./languages/gherkin":104,"./languages/glsl":105,"./languages/gml":106,"./languages/go":107,"./languages/golo":108,"./languages/gradle":109,"./languages/graphql":110,"./languages/groovy":111,"./languages/haml":112,"./languages/handlebars":113,"./languages/haskell":114,"./languages/haxe":115,"./languages/hsp":116,"./languages/http":117,"./languages/hy":118,"./languages/inform7":119,"./languages/ini":120,"./languages/irpf90":121,"./languages/isbl":122,"./languages/java":123,"./languages/javascript":124,"./languages/jboss-cli":125,"./languages/json":126,"./languages/julia":128,"./languages/julia-repl":127,"./languages/kotlin":129,"./languages/lasso":130,"./languages/latex":131,"./languages/ldif":132,"./languages/leaf":133,"./languages/less":134,"./languages/lisp":135,"./languages/livecodeserver":136,"./languages/livescript":137,"./languages/llvm":138,"./languages/lsl":139,"./languages/lua":140,"./languages/makefile":141,"./languages/markdown":142,"./languages/mathematica":143,"./languages/matlab":144,"./languages/maxima":145,"./languages/mel":146,"./languages/mercury":147,"./languages/mipsasm":148,"./languages/mizar":149,"./languages/mojolicious":150,"./languages/monkey":151,"./languages/moonscript":152,"./languages/n1ql":153,"./languages/nestedtext":154,"./languages/nginx":155,"./languages/nim":156,"./languages/nix":157,"./languages/node-repl":158,"./languages/nsis":159,"./languages/objectivec":160,"./languages/ocaml":161,"./languages/openscad":162,"./languages/oxygene":163,"./languages/parser3":164,"./languages/perl":165,"./languages/pf":166,"./languages/pgsql":167,"./languages/php":169,"./languages/php-template":168,"./languages/plaintext":170,"./languages/pony":171,"./languages/powershell":172,"./languages/processing":173,"./languages/profile":174,"./languages/prolog":175,"./languages/properties":176,"./languages/protobuf":177,"./languages/puppet":178,"./languages/purebasic":179,"./languages/python":181,"./languages/python-repl":180,"./languages/q":182,"./languages/qml":183,"./languages/r":184,"./languages/reasonml":185,"./languages/rib":186,"./languages/roboconf":187,"./languages/routeros":188,"./languages/rsl":189,"./languages/ruby":190,"./languages/ruleslanguage":191,"./languages/rust":192,"./languages/sas":193,"./languages/scala":194,"./languages/scheme":195,"./languages/scilab":196,"./languages/scss":197,"./languages/shell":198,"./languages/smali":199,"./languages/smalltalk":200,"./languages/sml":201,"./languages/sqf":202,"./languages/sql":203,"./languages/stan":204,"./languages/stata":205,"./languages/step21":206,"./languages/stylus":207,"./languages/subunit":208,"./languages/swift":209,"./languages/taggerscript":210,"./languages/tap":211,"./languages/tcl":212,"./languages/thrift":213,"./languages/tp":214,"./languages/twig":215,"./languages/typescript":216,"./languages/vala":217,"./languages/vbnet":218,"./languages/vbscript":220,"./languages/vbscript-html":219,"./languages/verilog":221,"./languages/vhdl":222,"./languages/vim":223,"./languages/wasm":224,"./languages/wren":225,"./languages/x86asm":226,"./languages/xl":227,"./languages/xml":228,"./languages/xquery":229,"./languages/yaml":230,"./languages/zephir":231}],40:[function(require,module,exports){
 /*
 Language: 1C:Enterprise
 Author: Stanislav Belov <stbelov@gmail.com>
@@ -8616,7 +8902,7 @@ function _1c(hljs) {
 
 module.exports = _1c;
 
-},{}],38:[function(require,module,exports){
+},{}],41:[function(require,module,exports){
 /*
 Language: Augmented Backus-Naur Form
 Author: Alex McKibben <alex@nullscope.net>
@@ -8700,7 +8986,7 @@ function abnf(hljs) {
 
 module.exports = abnf;
 
-},{}],39:[function(require,module,exports){
+},{}],42:[function(require,module,exports){
 /*
  Language: Apache Access Log
  Author: Oleg Efimov <efimovov@gmail.com>
@@ -8794,7 +9080,7 @@ function accesslog(hljs) {
 
 module.exports = accesslog;
 
-},{}],40:[function(require,module,exports){
+},{}],43:[function(require,module,exports){
 /*
 Language: ActionScript
 Author: Alexander Myadzel <myadzel@gmail.com>
@@ -8949,7 +9235,7 @@ function actionscript(hljs) {
 
 module.exports = actionscript;
 
-},{}],41:[function(require,module,exports){
+},{}],44:[function(require,module,exports){
 /*
 Language: Ada
 Author: Lars Schulna <kartoffelbrei.mit.muskatnuss@gmail.org>
@@ -9216,7 +9502,7 @@ function ada(hljs) {
 
 module.exports = ada;
 
-},{}],42:[function(require,module,exports){
+},{}],45:[function(require,module,exports){
 /*
 Language: AngelScript
 Author: Melissa Geels <melissa@nimble.tools>
@@ -9396,7 +9682,7 @@ function angelscript(hljs) {
 
 module.exports = angelscript;
 
-},{}],43:[function(require,module,exports){
+},{}],46:[function(require,module,exports){
 /*
 Language: Apache config
 Author: Ruslan Keba <rukeba@gmail.com>
@@ -9499,7 +9785,7 @@ function apache(hljs) {
 
 module.exports = apache;
 
-},{}],44:[function(require,module,exports){
+},{}],47:[function(require,module,exports){
 /*
 Language: AppleScript
 Authors: Nathan Grigg <nathan@nathanamy.org>, Dr. Drang <drdrang@gmail.com>
@@ -9650,7 +9936,7 @@ function applescript(hljs) {
 
 module.exports = applescript;
 
-},{}],45:[function(require,module,exports){
+},{}],48:[function(require,module,exports){
 /*
  Language: ArcGIS Arcade
  Category: scripting
@@ -10013,7 +10299,7 @@ function arcade(hljs) {
 
 module.exports = arcade;
 
-},{}],46:[function(require,module,exports){
+},{}],49:[function(require,module,exports){
 /*
 Language: C++
 Category: common, system
@@ -10984,7 +11270,7 @@ function arduino(hljs) {
 
 module.exports = arduino;
 
-},{}],47:[function(require,module,exports){
+},{}],50:[function(require,module,exports){
 /*
 Language: ARM Assembly
 Author: Dan Panzarella <alsoelp@gmail.com>
@@ -11106,7 +11392,7 @@ function armasm(hljs) {
 
 module.exports = armasm;
 
-},{}],48:[function(require,module,exports){
+},{}],51:[function(require,module,exports){
 /*
 Language: AsciiDoc
 Requires: xml.js
@@ -11369,7 +11655,7 @@ function asciidoc(hljs) {
 
 module.exports = asciidoc;
 
-},{}],49:[function(require,module,exports){
+},{}],52:[function(require,module,exports){
 /*
 Language: AspectJ
 Author: Hakan Ozler <ozler.hakan@gmail.com>
@@ -11601,7 +11887,7 @@ function aspectj(hljs) {
 
 module.exports = aspectj;
 
-},{}],50:[function(require,module,exports){
+},{}],53:[function(require,module,exports){
 /*
 Language: AutoHotkey
 Author: Seongwon Lee <dlimpid@gmail.com>
@@ -11678,7 +11964,7 @@ function autohotkey(hljs) {
 
 module.exports = autohotkey;
 
-},{}],51:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 /*
 Language: AutoIt
 Author: Manh Tuan <junookyo@gmail.com>
@@ -11858,7 +12144,7 @@ function autoit(hljs) {
 
 module.exports = autoit;
 
-},{}],52:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 /*
 Language: AVR Assembly
 Author: Vladimir Ermakov <vooon341@gmail.com>
@@ -11938,7 +12224,7 @@ function avrasm(hljs) {
 
 module.exports = avrasm;
 
-},{}],53:[function(require,module,exports){
+},{}],56:[function(require,module,exports){
 /*
 Language: Awk
 Author: Matthew Daly <matthewbdaly@gmail.com>
@@ -12007,7 +12293,7 @@ function awk(hljs) {
 
 module.exports = awk;
 
-},{}],54:[function(require,module,exports){
+},{}],57:[function(require,module,exports){
 /*
 Language: Microsoft X++
 Description: X++ is a language used in Microsoft Dynamics 365, Dynamics AX, and Axapta.
@@ -12197,7 +12483,7 @@ function axapta(hljs) {
 
 module.exports = axapta;
 
-},{}],55:[function(require,module,exports){
+},{}],58:[function(require,module,exports){
 /*
 Language: Bash
 Author: vah <vahtenberg@gmail.com>
@@ -12586,7 +12872,7 @@ function bash(hljs) {
 
 module.exports = bash;
 
-},{}],56:[function(require,module,exports){
+},{}],59:[function(require,module,exports){
 /*
 Language: BASIC
 Author: Raphaël Assénat <raph@raphnet.net>
@@ -12817,7 +13103,7 @@ function basic(hljs) {
 
 module.exports = basic;
 
-},{}],57:[function(require,module,exports){
+},{}],60:[function(require,module,exports){
 /*
 Language: Backus–Naur Form
 Website: https://en.wikipedia.org/wiki/Backus–Naur_form
@@ -12857,7 +13143,7 @@ function bnf(hljs) {
 
 module.exports = bnf;
 
-},{}],58:[function(require,module,exports){
+},{}],61:[function(require,module,exports){
 /*
 Language: Brainfuck
 Author: Evgeny Stepanischev <imbolk@gmail.com>
@@ -12913,7 +13199,7 @@ function brainfuck(hljs) {
 
 module.exports = brainfuck;
 
-},{}],59:[function(require,module,exports){
+},{}],62:[function(require,module,exports){
 /*
 Language: C
 Category: common, system
@@ -13233,7 +13519,7 @@ function c(hljs) {
 
 module.exports = c;
 
-},{}],60:[function(require,module,exports){
+},{}],63:[function(require,module,exports){
 /*
 Language: C/AL
 Author: Kenneth Fuglsang Christensen <kfuglsang@gmail.com>
@@ -13394,7 +13680,7 @@ function cal(hljs) {
 
 module.exports = cal;
 
-},{}],61:[function(require,module,exports){
+},{}],64:[function(require,module,exports){
 /*
 Language: Cap’n Proto
 Author: Oleg Efimov <efimovov@gmail.com>
@@ -13495,7 +13781,7 @@ function capnproto(hljs) {
 
 module.exports = capnproto;
 
-},{}],62:[function(require,module,exports){
+},{}],65:[function(require,module,exports){
 /*
 Language: Ceylon
 Author: Lucas Werkmeister <mail@lucaswerkmeister.de>
@@ -13636,7 +13922,7 @@ function ceylon(hljs) {
 
 module.exports = ceylon;
 
-},{}],63:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 /*
 Language: Clean
 Author: Camil Staps <info@camilstaps.nl>
@@ -13705,7 +13991,7 @@ function clean(hljs) {
 
 module.exports = clean;
 
-},{}],64:[function(require,module,exports){
+},{}],67:[function(require,module,exports){
 /*
 Language: Clojure REPL
 Description: Clojure REPL sessions
@@ -13734,7 +14020,7 @@ function clojureRepl(hljs) {
 
 module.exports = clojureRepl;
 
-},{}],65:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 /*
 Language: Clojure
 Description: Clojure syntax (based on lisp.js)
@@ -13920,7 +14206,7 @@ function clojure(hljs) {
 
 module.exports = clojure;
 
-},{}],66:[function(require,module,exports){
+},{}],69:[function(require,module,exports){
 /*
 Language: CMake
 Description: CMake is an open-source cross-platform system for build automation.
@@ -13984,7 +14270,7 @@ function cmake(hljs) {
 
 module.exports = cmake;
 
-},{}],67:[function(require,module,exports){
+},{}],70:[function(require,module,exports){
 const KEYWORDS = [
   "as", // for exports
   "in",
@@ -14351,7 +14637,7 @@ function coffeescript(hljs) {
 
 module.exports = coffeescript;
 
-},{}],68:[function(require,module,exports){
+},{}],71:[function(require,module,exports){
 /*
 Language: Coq
 Author: Stephan Boyer <stephan@stephanboyer.com>
@@ -14798,7 +15084,7 @@ function coq(hljs) {
 
 module.exports = coq;
 
-},{}],69:[function(require,module,exports){
+},{}],72:[function(require,module,exports){
 /*
 Language: Caché Object Script
 Author: Nikita Savchenko <zitros.lab@gmail.com>
@@ -14940,7 +15226,7 @@ function cos(hljs) {
 
 module.exports = cos;
 
-},{}],70:[function(require,module,exports){
+},{}],73:[function(require,module,exports){
 /*
 Language: C++
 Category: common, system
@@ -15510,7 +15796,7 @@ function cpp(hljs) {
 
 module.exports = cpp;
 
-},{}],71:[function(require,module,exports){
+},{}],74:[function(require,module,exports){
 /*
 Language: crmsh
 Author: Kristoffer Gronlund <kgronlund@suse.com>
@@ -15612,7 +15898,7 @@ function crmsh(hljs) {
 
 module.exports = crmsh;
 
-},{}],72:[function(require,module,exports){
+},{}],75:[function(require,module,exports){
 /*
 Language: Crystal
 Author: TSUYUSATO Kitsune <make.just.on@gmail.com>
@@ -15925,7 +16211,7 @@ function crystal(hljs) {
 
 module.exports = crystal;
 
-},{}],73:[function(require,module,exports){
+},{}],76:[function(require,module,exports){
 /*
 Language: C#
 Author: Jason Diamond <jason@diamond.name>
@@ -16326,7 +16612,7 @@ function csharp(hljs) {
 
 module.exports = csharp;
 
-},{}],74:[function(require,module,exports){
+},{}],77:[function(require,module,exports){
 /*
 Language: CSP
 Description: Content Security Policy definition highlighting
@@ -16385,7 +16671,7 @@ function csp(hljs) {
 
 module.exports = csp;
 
-},{}],75:[function(require,module,exports){
+},{}],78:[function(require,module,exports){
 const MODES = (hljs) => {
   return {
     IMPORTANT: {
@@ -17123,7 +17409,7 @@ function css(hljs) {
 
 module.exports = css;
 
-},{}],76:[function(require,module,exports){
+},{}],79:[function(require,module,exports){
 /*
 Language: D
 Author: Aleksandar Ruzicic <aleksandar@ruzicic.info>
@@ -17396,7 +17682,7 @@ function d(hljs) {
 
 module.exports = d;
 
-},{}],77:[function(require,module,exports){
+},{}],80:[function(require,module,exports){
 /*
 Language: Dart
 Requires: markdown.js
@@ -17657,7 +17943,7 @@ function dart(hljs) {
 
 module.exports = dart;
 
-},{}],78:[function(require,module,exports){
+},{}],81:[function(require,module,exports){
 /*
 Language: Delphi
 Website: https://www.embarcadero.com/products/delphi
@@ -17889,7 +18175,7 @@ function delphi(hljs) {
 
 module.exports = delphi;
 
-},{}],79:[function(require,module,exports){
+},{}],82:[function(require,module,exports){
 /*
 Language: Diff
 Description: Unified and context diff
@@ -17953,7 +18239,7 @@ function diff(hljs) {
 
 module.exports = diff;
 
-},{}],80:[function(require,module,exports){
+},{}],83:[function(require,module,exports){
 /*
 Language: Django
 Description: Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design.
@@ -18030,7 +18316,7 @@ function django(hljs) {
 
 module.exports = django;
 
-},{}],81:[function(require,module,exports){
+},{}],84:[function(require,module,exports){
 /*
 Language: DNS Zone
 Author: Tim Schumacher <tim@datenknoten.me>
@@ -18110,7 +18396,7 @@ function dns(hljs) {
 
 module.exports = dns;
 
-},{}],82:[function(require,module,exports){
+},{}],85:[function(require,module,exports){
 /*
 Language: Dockerfile
 Requires: bash.js
@@ -18156,7 +18442,7 @@ function dockerfile(hljs) {
 
 module.exports = dockerfile;
 
-},{}],83:[function(require,module,exports){
+},{}],86:[function(require,module,exports){
 /*
 Language: Batch file (DOS)
 Author: Alexander Makarov <sam@rmcreative.ru>
@@ -18324,7 +18610,7 @@ function dos(hljs) {
 
 module.exports = dos;
 
-},{}],84:[function(require,module,exports){
+},{}],87:[function(require,module,exports){
 /*
  Language: dsconfig
  Description: dsconfig batch configuration language for LDAP directory servers
@@ -18392,7 +18678,7 @@ function dsconfig(hljs) {
 
 module.exports = dsconfig;
 
-},{}],85:[function(require,module,exports){
+},{}],88:[function(require,module,exports){
 /*
 Language: Device Tree
 Description: *.dts files used in the Linux kernel
@@ -18551,7 +18837,7 @@ function dts(hljs) {
 
 module.exports = dts;
 
-},{}],86:[function(require,module,exports){
+},{}],89:[function(require,module,exports){
 /*
 Language: Dust
 Requires: xml.js
@@ -18600,7 +18886,7 @@ function dust(hljs) {
 
 module.exports = dust;
 
-},{}],87:[function(require,module,exports){
+},{}],90:[function(require,module,exports){
 /*
 Language: Extended Backus-Naur Form
 Author: Alex McKibben <alex@nullscope.net>
@@ -18655,7 +18941,7 @@ function ebnf(hljs) {
 
 module.exports = ebnf;
 
-},{}],88:[function(require,module,exports){
+},{}],91:[function(require,module,exports){
 /*
 Language: Elixir
 Author: Josh Adams <josh@isotope11.com>
@@ -18936,7 +19222,7 @@ function elixir(hljs) {
 
 module.exports = elixir;
 
-},{}],89:[function(require,module,exports){
+},{}],92:[function(require,module,exports){
 /*
 Language: Elm
 Author: Janis Voigtlaender <janis.voigtlaender@gmail.com>
@@ -19081,7 +19367,7 @@ function elm(hljs) {
 
 module.exports = elm;
 
-},{}],90:[function(require,module,exports){
+},{}],93:[function(require,module,exports){
 /*
 Language: ERB (Embedded Ruby)
 Requires: xml.js, ruby.js
@@ -19112,7 +19398,7 @@ function erb(hljs) {
 
 module.exports = erb;
 
-},{}],91:[function(require,module,exports){
+},{}],94:[function(require,module,exports){
 /*
 Language: Erlang REPL
 Author: Sergey Ignatov <sergey@ignatov.spb.su>
@@ -19168,7 +19454,7 @@ function erlangRepl(hljs) {
 
 module.exports = erlangRepl;
 
-},{}],92:[function(require,module,exports){
+},{}],95:[function(require,module,exports){
 /*
 Language: Erlang
 Description: Erlang is a general-purpose functional language, with strict evaluation, single assignment, and dynamic typing.
@@ -19361,7 +19647,7 @@ function erlang(hljs) {
 
 module.exports = erlang;
 
-},{}],93:[function(require,module,exports){
+},{}],96:[function(require,module,exports){
 /*
 Language: Excel formulae
 Author: Victor Zhou <OiCMudkips@users.noreply.github.com>
@@ -19907,7 +20193,7 @@ function excel(hljs) {
 
 module.exports = excel;
 
-},{}],94:[function(require,module,exports){
+},{}],97:[function(require,module,exports){
 /*
 Language: FIX
 Author: Brent Bradbury <brent@brentium.com>
@@ -19948,7 +20234,7 @@ function fix(hljs) {
 
 module.exports = fix;
 
-},{}],95:[function(require,module,exports){
+},{}],98:[function(require,module,exports){
 /*
  Language: Flix
  Category: functional
@@ -20029,7 +20315,7 @@ function flix(hljs) {
 
 module.exports = flix;
 
-},{}],96:[function(require,module,exports){
+},{}],99:[function(require,module,exports){
 /*
 Language: Fortran
 Author: Anthony Scemama <scemama@irsamc.ups-tlse.fr>
@@ -20604,7 +20890,7 @@ function fortran(hljs) {
 
 module.exports = fortran;
 
-},{}],97:[function(require,module,exports){
+},{}],100:[function(require,module,exports){
 /**
  * @param {string} value
  * @returns {RegExp}
@@ -21232,7 +21518,7 @@ function fsharp(hljs) {
 
 module.exports = fsharp;
 
-},{}],98:[function(require,module,exports){
+},{}],101:[function(require,module,exports){
 /*
  Language: GAMS
  Author: Stefan Bechert <stefan.bechert@gmx.net>
@@ -21415,7 +21701,7 @@ function gams(hljs) {
 
 module.exports = gams;
 
-},{}],99:[function(require,module,exports){
+},{}],102:[function(require,module,exports){
 /*
 Language: GAUSS
 Author: Matt Evans <matt@aptech.com>
@@ -21723,7 +22009,7 @@ function gauss(hljs) {
 
 module.exports = gauss;
 
-},{}],100:[function(require,module,exports){
+},{}],103:[function(require,module,exports){
 /*
  Language: G-code (ISO 6983)
  Contributors: Adam Joseph Cook <adam.joseph.cook@gmail.com>
@@ -21805,7 +22091,7 @@ function gcode(hljs) {
 
 module.exports = gcode;
 
-},{}],101:[function(require,module,exports){
+},{}],104:[function(require,module,exports){
 /*
  Language: Gherkin
  Author: Sam Pikesley (@pikesley) <sam.pikesley@theodi.org>
@@ -21856,7 +22142,7 @@ function gherkin(hljs) {
 
 module.exports = gherkin;
 
-},{}],102:[function(require,module,exports){
+},{}],105:[function(require,module,exports){
 /*
 Language: GLSL
 Description: OpenGL Shading Language
@@ -21986,7 +22272,7 @@ function glsl(hljs) {
 
 module.exports = glsl;
 
-},{}],103:[function(require,module,exports){
+},{}],106:[function(require,module,exports){
 /*
 Language: GML
 Author: Meseta <meseta@gmail.com>
@@ -24793,7 +25079,7 @@ function gml(hljs) {
 
 module.exports = gml;
 
-},{}],104:[function(require,module,exports){
+},{}],107:[function(require,module,exports){
 /*
 Language: Go
 Author: Stephan Kountso aka StepLg <steplg@gmail.com>
@@ -24936,7 +25222,7 @@ function go(hljs) {
 
 module.exports = go;
 
-},{}],105:[function(require,module,exports){
+},{}],108:[function(require,module,exports){
 /*
 Language: Golo
 Author: Philippe Charriere <ph.charriere@gmail.com>
@@ -25018,7 +25304,7 @@ function golo(hljs) {
 
 module.exports = golo;
 
-},{}],106:[function(require,module,exports){
+},{}],109:[function(require,module,exports){
 /*
 Language: Gradle
 Description: Gradle is an open-source build automation tool focused on flexibility and performance.
@@ -25209,7 +25495,7 @@ function gradle(hljs) {
 
 module.exports = gradle;
 
-},{}],107:[function(require,module,exports){
+},{}],110:[function(require,module,exports){
 /*
  Language: graphql
  Category: scripting, protocols, web
@@ -25289,7 +25575,7 @@ function graphql(hljs) {
 
 module.exports = graphql;
 
-},{}],108:[function(require,module,exports){
+},{}],111:[function(require,module,exports){
 /*
  Language: Groovy
  Author: Guillaume Laforge <glaforge@gmail.com>
@@ -25479,7 +25765,7 @@ function groovy(hljs) {
 
 module.exports = groovy;
 
-},{}],109:[function(require,module,exports){
+},{}],112:[function(require,module,exports){
 /*
 Language: HAML
 Requires: ruby.js
@@ -25594,7 +25880,7 @@ function haml(hljs) {
 
 module.exports = haml;
 
-},{}],110:[function(require,module,exports){
+},{}],113:[function(require,module,exports){
 /*
 Language: Handlebars
 Requires: xml.js
@@ -25854,7 +26140,7 @@ function handlebars(hljs) {
 
 module.exports = handlebars;
 
-},{}],111:[function(require,module,exports){
+},{}],114:[function(require,module,exports){
 /*
 Language: Haskell
 Author: Jeremy Hull <sourdrums@gmail.com>
@@ -26048,7 +26334,7 @@ function haskell(hljs) {
 
 module.exports = haskell;
 
-},{}],112:[function(require,module,exports){
+},{}],115:[function(require,module,exports){
 /*
 Language: Haxe
 Description: Haxe is an open source toolkit based on a modern, high level, strictly typed programming language.
@@ -26203,7 +26489,7 @@ function haxe(hljs) {
 
 module.exports = haxe;
 
-},{}],113:[function(require,module,exports){
+},{}],116:[function(require,module,exports){
 /*
 Language: HSP
 Author: prince <MC.prince.0203@gmail.com>
@@ -26264,7 +26550,7 @@ function hsp(hljs) {
 
 module.exports = hsp;
 
-},{}],114:[function(require,module,exports){
+},{}],117:[function(require,module,exports){
 /*
 Language: HTTP
 Description: HTTP request and response headers with automatic body highlighting
@@ -26363,7 +26649,7 @@ function http(hljs) {
 
 module.exports = http;
 
-},{}],115:[function(require,module,exports){
+},{}],118:[function(require,module,exports){
 /*
 Language: Hy
 Description: Hy is a wonderful dialect of Lisp that’s embedded in Python.
@@ -26502,7 +26788,7 @@ function hy(hljs) {
 
 module.exports = hy;
 
-},{}],116:[function(require,module,exports){
+},{}],119:[function(require,module,exports){
 /*
 Language: Inform 7
 Author: Bruno Dias <bruno.r.dias@gmail.com>
@@ -26573,7 +26859,7 @@ function inform7(hljs) {
 
 module.exports = inform7;
 
-},{}],117:[function(require,module,exports){
+},{}],120:[function(require,module,exports){
 /*
 Language: TOML, also INI
 Description: TOML aims to be a minimal configuration file format that's easy to read due to obvious semantics.
@@ -26696,7 +26982,7 @@ function ini(hljs) {
 
 module.exports = ini;
 
-},{}],118:[function(require,module,exports){
+},{}],121:[function(require,module,exports){
 /*
 Language: IRPF90
 Author: Anthony Scemama <scemama@irsamc.ups-tlse.fr>
@@ -26805,7 +27091,7 @@ function irpf90(hljs) {
 
 module.exports = irpf90;
 
-},{}],119:[function(require,module,exports){
+},{}],122:[function(require,module,exports){
 /*
 Language: ISBL
 Author: Dmitriy Tarasov <dimatar@gmail.com>
@@ -30012,7 +30298,7 @@ function isbl(hljs) {
 
 module.exports = isbl;
 
-},{}],120:[function(require,module,exports){
+},{}],123:[function(require,module,exports){
 // https://docs.oracle.com/javase/specs/jls/se15/html/jls-3.html#jls-3.10
 var decimalDigits = '[0-9](_*[0-9])*';
 var frac = `\\.(${decimalDigits})`;
@@ -30300,7 +30586,7 @@ function java(hljs) {
 
 module.exports = java;
 
-},{}],121:[function(require,module,exports){
+},{}],124:[function(require,module,exports){
 const IDENT_RE = '[A-Za-z$_][0-9A-Za-z$_]*';
 const KEYWORDS = [
   "as", // for exports
@@ -31037,7 +31323,7 @@ function javascript(hljs) {
 
 module.exports = javascript;
 
-},{}],122:[function(require,module,exports){
+},{}],125:[function(require,module,exports){
 /*
  Language: JBoss CLI
  Author: Raphaël Parrëe <rparree@edc4it.com>
@@ -31102,7 +31388,7 @@ function jbossCli(hljs) {
 
 module.exports = jbossCli;
 
-},{}],123:[function(require,module,exports){
+},{}],126:[function(require,module,exports){
 /*
 Language: JSON
 Description: JSON (JavaScript Object Notation) is a lightweight data-interchange format.
@@ -31150,7 +31436,7 @@ function json(hljs) {
 
 module.exports = json;
 
-},{}],124:[function(require,module,exports){
+},{}],127:[function(require,module,exports){
 /*
 Language: Julia REPL
 Description: Julia REPL sessions
@@ -31202,7 +31488,7 @@ function juliaRepl(hljs) {
 
 module.exports = juliaRepl;
 
-},{}],125:[function(require,module,exports){
+},{}],128:[function(require,module,exports){
 /*
 Language: Julia
 Description: Julia is a high-level, high-performance, dynamic programming language.
@@ -31645,7 +31931,7 @@ function julia(hljs) {
 
 module.exports = julia;
 
-},{}],126:[function(require,module,exports){
+},{}],129:[function(require,module,exports){
 // https://docs.oracle.com/javase/specs/jls/se15/html/jls-3.html#jls-3.10
 var decimalDigits = '[0-9](_*[0-9])*';
 var frac = `\\.(${decimalDigits})`;
@@ -31922,7 +32208,7 @@ function kotlin(hljs) {
 
 module.exports = kotlin;
 
-},{}],127:[function(require,module,exports){
+},{}],130:[function(require,module,exports){
 /*
 Language: Lasso
 Author: Eric Knibbe <eric@lassosoft.com>
@@ -32094,7 +32380,7 @@ function lasso(hljs) {
 
 module.exports = lasso;
 
-},{}],128:[function(require,module,exports){
+},{}],131:[function(require,module,exports){
 /*
 Language: LaTeX
 Author: Benedikt Wilde <bwilde@posteo.de>
@@ -32374,7 +32660,7 @@ function latex(hljs) {
 
 module.exports = latex;
 
-},{}],129:[function(require,module,exports){
+},{}],132:[function(require,module,exports){
 /*
 Language: LDIF
 Contributors: Jacob Childress <jacobc@gmail.com>
@@ -32407,7 +32693,7 @@ function ldif(hljs) {
 
 module.exports = ldif;
 
-},{}],130:[function(require,module,exports){
+},{}],133:[function(require,module,exports){
 /*
 Language: Leaf
 Author: Hale Chan <halechan@qq.com>
@@ -32458,7 +32744,7 @@ function leaf(hljs) {
 
 module.exports = leaf;
 
-},{}],131:[function(require,module,exports){
+},{}],134:[function(require,module,exports){
 const MODES = (hljs) => {
   return {
     IMPORTANT: {
@@ -33293,7 +33579,7 @@ function less(hljs) {
 
 module.exports = less;
 
-},{}],132:[function(require,module,exports){
+},{}],135:[function(require,module,exports){
 /*
 Language: Lisp
 Description: Generic lisp syntax
@@ -33434,7 +33720,7 @@ function lisp(hljs) {
 
 module.exports = lisp;
 
-},{}],133:[function(require,module,exports){
+},{}],136:[function(require,module,exports){
 /*
 Language: LiveCode
 Author: Ralf Bitter <rabit@revigniter.com>
@@ -33609,7 +33895,7 @@ function livecodeserver(hljs) {
 
 module.exports = livecodeserver;
 
-},{}],134:[function(require,module,exports){
+},{}],137:[function(require,module,exports){
 const KEYWORDS = [
   "as", // for exports
   "in",
@@ -33988,7 +34274,7 @@ function livescript(hljs) {
 
 module.exports = livescript;
 
-},{}],135:[function(require,module,exports){
+},{}],138:[function(require,module,exports){
 /*
 Language: LLVM IR
 Author: Michael Rodler <contact@f0rki.at>
@@ -34122,7 +34408,7 @@ function llvm(hljs) {
 
 module.exports = llvm;
 
-},{}],136:[function(require,module,exports){
+},{}],139:[function(require,module,exports){
 /*
 Language: LSL (Linden Scripting Language)
 Description: The Linden Scripting Language is used in Second Life by Linden Labs.
@@ -34200,7 +34486,7 @@ function lsl(hljs) {
 
 module.exports = lsl;
 
-},{}],137:[function(require,module,exports){
+},{}],140:[function(require,module,exports){
 /*
 Language: Lua
 Description: Lua is a powerful, efficient, lightweight, embeddable scripting language.
@@ -34282,7 +34568,7 @@ function lua(hljs) {
 
 module.exports = lua;
 
-},{}],138:[function(require,module,exports){
+},{}],141:[function(require,module,exports){
 /*
 Language: Makefile
 Author: Ivan Sagalaev <maniac@softwaremaniacs.org>
@@ -34370,7 +34656,7 @@ function makefile(hljs) {
 
 module.exports = makefile;
 
-},{}],139:[function(require,module,exports){
+},{}],142:[function(require,module,exports){
 /*
 Language: Markdown
 Requires: xml.js
@@ -34613,7 +34899,7 @@ function markdown(hljs) {
 
 module.exports = markdown;
 
-},{}],140:[function(require,module,exports){
+},{}],143:[function(require,module,exports){
 const SYSTEM_SYMBOLS = [
   "AASTriangle",
   "AbelianGroup",
@@ -41364,7 +41650,7 @@ function mathematica(hljs) {
 
 module.exports = mathematica;
 
-},{}],141:[function(require,module,exports){
+},{}],144:[function(require,module,exports){
 /*
 Language: Matlab
 Author: Denis Bardadym <bardadymchik@gmail.com>
@@ -41473,7 +41759,7 @@ function matlab(hljs) {
 
 module.exports = matlab;
 
-},{}],142:[function(require,module,exports){
+},{}],145:[function(require,module,exports){
 /*
 Language: Maxima
 Author: Robert Dodier <robert.dodier@gmail.com>
@@ -41889,7 +42175,7 @@ function maxima(hljs) {
 
 module.exports = maxima;
 
-},{}],143:[function(require,module,exports){
+},{}],146:[function(require,module,exports){
 /*
 Language: MEL
 Description: Maya Embedded Language
@@ -42126,7 +42412,7 @@ function mel(hljs) {
 
 module.exports = mel;
 
-},{}],144:[function(require,module,exports){
+},{}],147:[function(require,module,exports){
 /*
 Language: Mercury
 Author: mucaho <mkucko@gmail.com>
@@ -42235,7 +42521,7 @@ function mercury(hljs) {
 
 module.exports = mercury;
 
-},{}],145:[function(require,module,exports){
+},{}],148:[function(require,module,exports){
 /*
 Language: MIPS Assembly
 Author: Nebuleon Fumika <nebuleon.fumika@gmail.com>
@@ -42341,7 +42627,7 @@ function mipsasm(hljs) {
 
 module.exports = mipsasm;
 
-},{}],146:[function(require,module,exports){
+},{}],149:[function(require,module,exports){
 /*
 Language: Mizar
 Description: The Mizar Language is a formal language derived from the mathematical vernacular.
@@ -42370,7 +42656,7 @@ function mizar(hljs) {
 
 module.exports = mizar;
 
-},{}],147:[function(require,module,exports){
+},{}],150:[function(require,module,exports){
 /*
 Language: Mojolicious
 Requires: xml.js, perl.js
@@ -42408,7 +42694,7 @@ function mojolicious(hljs) {
 
 module.exports = mojolicious;
 
-},{}],148:[function(require,module,exports){
+},{}],151:[function(require,module,exports){
 /*
 Language: Monkey
 Description: Monkey2 is an easy to use, cross platform, games oriented programming language from Blitz Research.
@@ -42593,7 +42879,7 @@ function monkey(hljs) {
 
 module.exports = monkey;
 
-},{}],149:[function(require,module,exports){
+},{}],152:[function(require,module,exports){
 /*
 Language: MoonScript
 Author: Billy Quith <chinbillybilbo@gmail.com>
@@ -42736,7 +43022,7 @@ function moonscript(hljs) {
 
 module.exports = moonscript;
 
-},{}],150:[function(require,module,exports){
+},{}],153:[function(require,module,exports){
 /*
  Language: N1QL
  Author: Andres Täht <andres.taht@gmail.com>
@@ -43102,7 +43388,7 @@ function n1ql(hljs) {
 
 module.exports = n1ql;
 
-},{}],151:[function(require,module,exports){
+},{}],154:[function(require,module,exports){
 /*
 Language: NestedText
 Description: NestedText is a file format for holding data that is to be entered, edited, or viewed by people.
@@ -43187,7 +43473,7 @@ function nestedtext(hljs) {
 
 module.exports = nestedtext;
 
-},{}],152:[function(require,module,exports){
+},{}],155:[function(require,module,exports){
 /*
 Language: Nginx config
 Author: Peter Leonov <gojpeg@yandex.ru>
@@ -43342,7 +43628,7 @@ function nginx(hljs) {
 
 module.exports = nginx;
 
-},{}],153:[function(require,module,exports){
+},{}],156:[function(require,module,exports){
 /*
 Language: Nim
 Description: Nim is a statically typed compiled systems programming language.
@@ -43529,7 +43815,7 @@ function nim(hljs) {
 
 module.exports = nim;
 
-},{}],154:[function(require,module,exports){
+},{}],157:[function(require,module,exports){
 /*
 Language: Nix
 Author: Domen Kožar <domen@dev.si>
@@ -43621,7 +43907,7 @@ function nix(hljs) {
 
 module.exports = nix;
 
-},{}],155:[function(require,module,exports){
+},{}],158:[function(require,module,exports){
 /*
 Language: Node REPL
 Requires: javascript.js
@@ -43656,7 +43942,7 @@ function nodeRepl(hljs) {
 
 module.exports = nodeRepl;
 
-},{}],156:[function(require,module,exports){
+},{}],159:[function(require,module,exports){
 /*
 Language: NSIS
 Description: Nullsoft Scriptable Install System
@@ -44212,7 +44498,7 @@ function nsis(hljs) {
 
 module.exports = nsis;
 
-},{}],157:[function(require,module,exports){
+},{}],160:[function(require,module,exports){
 /*
 Language: Objective-C
 Author: Valerii Hiora <valerii.hiora@gmail.com>
@@ -44467,7 +44753,7 @@ function objectivec(hljs) {
 
 module.exports = objectivec;
 
-},{}],158:[function(require,module,exports){
+},{}],161:[function(require,module,exports){
 /*
 Language: OCaml
 Author: Mehdi Dogguy <mehdi@dogguy.org>
@@ -44552,7 +44838,7 @@ function ocaml(hljs) {
 
 module.exports = ocaml;
 
-},{}],159:[function(require,module,exports){
+},{}],162:[function(require,module,exports){
 /*
 Language: OpenSCAD
 Author: Dan Panzarella <alsoelp@gmail.com>
@@ -44631,7 +44917,7 @@ function openscad(hljs) {
 
 module.exports = openscad;
 
-},{}],160:[function(require,module,exports){
+},{}],163:[function(require,module,exports){
 /*
 Language: Oxygene
 Author: Carlo Kok <ck@remobjects.com>
@@ -44719,7 +45005,7 @@ function oxygene(hljs) {
 
 module.exports = oxygene;
 
-},{}],161:[function(require,module,exports){
+},{}],164:[function(require,module,exports){
 /*
 Language: Parser3
 Requires: xml.js
@@ -44776,7 +45062,7 @@ function parser3(hljs) {
 
 module.exports = parser3;
 
-},{}],162:[function(require,module,exports){
+},{}],165:[function(require,module,exports){
 /*
 Language: Perl
 Author: Peter Leonov <gojpeg@yandex.ru>
@@ -45249,7 +45535,7 @@ function perl(hljs) {
 
 module.exports = perl;
 
-},{}],163:[function(require,module,exports){
+},{}],166:[function(require,module,exports){
 /*
 Language: Packet Filter config
 Description: pf.conf — packet filter configuration file (OpenBSD)
@@ -45311,7 +45597,7 @@ function pf(hljs) {
 
 module.exports = pf;
 
-},{}],164:[function(require,module,exports){
+},{}],167:[function(require,module,exports){
 /*
 Language: PostgreSQL and PL/pgSQL
 Author: Egor Rogov (e.rogov@postgrespro.ru)
@@ -45837,7 +46123,7 @@ function pgsql(hljs) {
 
 module.exports = pgsql;
 
-},{}],165:[function(require,module,exports){
+},{}],168:[function(require,module,exports){
 /*
 Language: PHP Template
 Requires: xml.js, php.js
@@ -45893,7 +46179,7 @@ function phpTemplate(hljs) {
 
 module.exports = phpTemplate;
 
-},{}],166:[function(require,module,exports){
+},{}],169:[function(require,module,exports){
 /*
 Language: PHP
 Author: Victor Karamzin <Victor.Karamzin@enterra-inc.com>
@@ -46499,7 +46785,7 @@ function php(hljs) {
 
 module.exports = php;
 
-},{}],167:[function(require,module,exports){
+},{}],170:[function(require,module,exports){
 /*
 Language: Plain text
 Author: Egor Rogov (e.rogov@postgrespro.ru)
@@ -46520,7 +46806,7 @@ function plaintext(hljs) {
 
 module.exports = plaintext;
 
-},{}],168:[function(require,module,exports){
+},{}],171:[function(require,module,exports){
 /*
 Language: Pony
 Author: Joe Eli McIlvain <joe.eli.mac@gmail.com>
@@ -46611,7 +46897,7 @@ function pony(hljs) {
 
 module.exports = pony;
 
-},{}],169:[function(require,module,exports){
+},{}],172:[function(require,module,exports){
 /*
 Language: PowerShell
 Description: PowerShell is a task-based command-line shell and scripting language built on .NET.
@@ -46929,7 +47215,7 @@ function powershell(hljs) {
 
 module.exports = powershell;
 
-},{}],170:[function(require,module,exports){
+},{}],173:[function(require,module,exports){
 /*
 Language: Processing
 Description: Processing is a flexible software sketchbook and a language for learning how to code within the context of the visual arts.
@@ -47365,7 +47651,7 @@ function processing(hljs) {
 
 module.exports = processing;
 
-},{}],171:[function(require,module,exports){
+},{}],174:[function(require,module,exports){
 /*
 Language: Python profiler
 Description: Python profiler results
@@ -47410,7 +47696,7 @@ function profile(hljs) {
 
 module.exports = profile;
 
-},{}],172:[function(require,module,exports){
+},{}],175:[function(require,module,exports){
 /*
 Language: Prolog
 Description: Prolog is a general purpose logic programming language associated with artificial intelligence and computational linguistics.
@@ -47508,7 +47794,7 @@ function prolog(hljs) {
 
 module.exports = prolog;
 
-},{}],173:[function(require,module,exports){
+},{}],176:[function(require,module,exports){
 /*
 Language: .properties
 Contributors: Valentin Aitken <valentin@nalisbg.com>, Egor Rogov <e.rogov@postgrespro.ru>
@@ -47578,7 +47864,7 @@ function properties(hljs) {
 
 module.exports = properties;
 
-},{}],174:[function(require,module,exports){
+},{}],177:[function(require,module,exports){
 /*
 Language: Protocol Buffers
 Author: Dan Tao <daniel.tao@gmail.com>
@@ -47658,7 +47944,7 @@ function protobuf(hljs) {
 
 module.exports = protobuf;
 
-},{}],175:[function(require,module,exports){
+},{}],178:[function(require,module,exports){
 /*
 Language: Puppet
 Author: Jose Molina Colmenero <gaudy41@gmail.com>
@@ -47806,7 +48092,7 @@ function puppet(hljs) {
 
 module.exports = puppet;
 
-},{}],176:[function(require,module,exports){
+},{}],179:[function(require,module,exports){
 /*
 Language: PureBASIC
 Author: Tristano Ajmone <tajmone@gmail.com>
@@ -47907,7 +48193,7 @@ function purebasic(hljs) {
 
 module.exports = purebasic;
 
-},{}],177:[function(require,module,exports){
+},{}],180:[function(require,module,exports){
 /*
 Language: Python REPL
 Requires: python.js
@@ -47941,7 +48227,7 @@ function pythonRepl(hljs) {
 
 module.exports = pythonRepl;
 
-},{}],178:[function(require,module,exports){
+},{}],181:[function(require,module,exports){
 /*
 Language: Python
 Description: Python is an interpreted, object-oriented, high-level programming language with dynamic semantics.
@@ -48375,7 +48661,7 @@ function python(hljs) {
 
 module.exports = python;
 
-},{}],179:[function(require,module,exports){
+},{}],182:[function(require,module,exports){
 /*
 Language: Q
 Description: Q is a vector-based functional paradigm programming language built into the kdb+ database.
@@ -48414,7 +48700,7 @@ function q(hljs) {
 
 module.exports = q;
 
-},{}],180:[function(require,module,exports){
+},{}],183:[function(require,module,exports){
 /*
 Language: QML
 Requires: javascript.js, xml.js
@@ -48605,7 +48891,7 @@ function qml(hljs) {
 
 module.exports = qml;
 
-},{}],181:[function(require,module,exports){
+},{}],184:[function(require,module,exports){
 /*
 Language: R
 Description: R is a free software environment for statistical computing and graphics.
@@ -48864,7 +49150,7 @@ function r(hljs) {
 
 module.exports = r;
 
-},{}],182:[function(require,module,exports){
+},{}],185:[function(require,module,exports){
 /*
 Language: ReasonML
 Description: Reason lets you write simple, fast and quality type safe code while leveraging both the JavaScript & OCaml ecosystems.
@@ -49174,7 +49460,7 @@ function reasonml(hljs) {
 
 module.exports = reasonml;
 
-},{}],183:[function(require,module,exports){
+},{}],186:[function(require,module,exports){
 /*
 Language: RenderMan RIB
 Author: Konstantin Evdokimenko <qewerty@gmail.com>
@@ -49213,7 +49499,7 @@ function rib(hljs) {
 
 module.exports = rib;
 
-},{}],184:[function(require,module,exports){
+},{}],187:[function(require,module,exports){
 /*
 Language: Roboconf
 Author: Vincent Zurczak <vzurczak@linagora.com>
@@ -49297,7 +49583,7 @@ function roboconf(hljs) {
 
 module.exports = roboconf;
 
-},{}],185:[function(require,module,exports){
+},{}],188:[function(require,module,exports){
 /*
 Language: Microtik RouterOS script
 Author: Ivan Dementev <ivan_div@mail.ru>
@@ -49462,7 +49748,7 @@ function routeros(hljs) {
 
 module.exports = routeros;
 
-},{}],186:[function(require,module,exports){
+},{}],189:[function(require,module,exports){
 /*
 Language: RenderMan RSL
 Author: Konstantin Evdokimenko <qewerty@gmail.com>
@@ -49613,7 +49899,7 @@ function rsl(hljs) {
 
 module.exports = rsl;
 
-},{}],187:[function(require,module,exports){
+},{}],190:[function(require,module,exports){
 /*
 Language: Ruby
 Description: Ruby is a dynamic, open source programming language with a focus on simplicity and productivity.
@@ -50027,7 +50313,7 @@ function ruby(hljs) {
 
 module.exports = ruby;
 
-},{}],188:[function(require,module,exports){
+},{}],191:[function(require,module,exports){
 /*
 Language: Oracle Rules Language
 Author: Jason Jacobson <jason.a.jacobson@gmail.com>
@@ -50105,7 +50391,7 @@ function ruleslanguage(hljs) {
 
 module.exports = ruleslanguage;
 
-},{}],189:[function(require,module,exports){
+},{}],192:[function(require,module,exports){
 /*
 Language: Rust
 Author: Andrey Vlasovskikh <andrey.vlasovskikh@gmail.com>
@@ -50410,7 +50696,7 @@ function rust(hljs) {
 
 module.exports = rust;
 
-},{}],190:[function(require,module,exports){
+},{}],193:[function(require,module,exports){
 /*
 Language: SAS
 Author: Mauricio Caceres <mauricio.caceres.bravo@gmail.com>
@@ -50968,7 +51254,7 @@ function sas(hljs) {
 
 module.exports = sas;
 
-},{}],191:[function(require,module,exports){
+},{}],194:[function(require,module,exports){
 /*
 Language: Scala
 Category: functional
@@ -51149,7 +51435,7 @@ function scala(hljs) {
 
 module.exports = scala;
 
-},{}],192:[function(require,module,exports){
+},{}],195:[function(require,module,exports){
 /*
 Language: Scheme
 Description: Scheme is a programming language in the Lisp family.
@@ -51346,7 +51632,7 @@ function scheme(hljs) {
 
 module.exports = scheme;
 
-},{}],193:[function(require,module,exports){
+},{}],196:[function(require,module,exports){
 /*
 Language: Scilab
 Author: Sylvestre Ledru <sylvestre.ledru@scilab-enterprises.com>
@@ -51421,7 +51707,7 @@ function scilab(hljs) {
 
 module.exports = scilab;
 
-},{}],194:[function(require,module,exports){
+},{}],197:[function(require,module,exports){
 const MODES = (hljs) => {
   return {
     IMPORTANT: {
@@ -52148,7 +52434,7 @@ function scss(hljs) {
 
 module.exports = scss;
 
-},{}],195:[function(require,module,exports){
+},{}],198:[function(require,module,exports){
 /*
 Language: Shell Session
 Requires: bash.js
@@ -52183,7 +52469,7 @@ function shell(hljs) {
 
 module.exports = shell;
 
-},{}],196:[function(require,module,exports){
+},{}],199:[function(require,module,exports){
 /*
 Language: Smali
 Author: Dennis Titze <dennis.titze@gmail.com>
@@ -52310,7 +52596,7 @@ function smali(hljs) {
 
 module.exports = smali;
 
-},{}],197:[function(require,module,exports){
+},{}],200:[function(require,module,exports){
 /*
 Language: Smalltalk
 Description: Smalltalk is an object-oriented, dynamically typed reflective programming language.
@@ -52380,7 +52666,7 @@ function smalltalk(hljs) {
 
 module.exports = smalltalk;
 
-},{}],198:[function(require,module,exports){
+},{}],201:[function(require,module,exports){
 /*
 Language: SML (Standard ML)
 Author: Edwin Dalorzo <edwin@dalorzo.org>
@@ -52457,7 +52743,7 @@ function sml(hljs) {
 
 module.exports = sml;
 
-},{}],199:[function(require,module,exports){
+},{}],202:[function(require,module,exports){
 /*
 Language: SQF
 Author: Søren Enevoldsen <senevoldsen90@gmail.com>
@@ -54990,7 +55276,7 @@ function sqf(hljs) {
 
 module.exports = sqf;
 
-},{}],200:[function(require,module,exports){
+},{}],203:[function(require,module,exports){
 /*
  Language: SQL
  Website: https://en.wikipedia.org/wiki/SQL
@@ -55674,7 +55960,7 @@ function sql(hljs) {
 
 module.exports = sql;
 
-},{}],201:[function(require,module,exports){
+},{}],204:[function(require,module,exports){
 /*
 Language: Stan
 Description: The Stan probabilistic programming language
@@ -56169,7 +56455,7 @@ function stan(hljs) {
 
 module.exports = stan;
 
-},{}],202:[function(require,module,exports){
+},{}],205:[function(require,module,exports){
 /*
 Language: Stata
 Author: Brian Quistorff <bquistorff@gmail.com>
@@ -56224,7 +56510,7 @@ function stata(hljs) {
 
 module.exports = stata;
 
-},{}],203:[function(require,module,exports){
+},{}],206:[function(require,module,exports){
 /*
 Language: STEP Part 21
 Contributors: Adam Joseph Cook <adam.joseph.cook@gmail.com>
@@ -56292,7 +56578,7 @@ function step21(hljs) {
 
 module.exports = step21;
 
-},{}],204:[function(require,module,exports){
+},{}],207:[function(require,module,exports){
 const MODES = (hljs) => {
   return {
     IMPORTANT: {
@@ -57080,7 +57366,7 @@ function stylus(hljs) {
 
 module.exports = stylus;
 
-},{}],205:[function(require,module,exports){
+},{}],208:[function(require,module,exports){
 /*
 Language: SubUnit
 Author: Sergey Bronnikov <sergeyb@bronevichok.ru>
@@ -57125,7 +57411,7 @@ function subunit(hljs) {
 
 module.exports = subunit;
 
-},{}],206:[function(require,module,exports){
+},{}],209:[function(require,module,exports){
 /**
  * @param {string} value
  * @returns {RegExp}
@@ -57985,7 +58271,7 @@ function swift(hljs) {
 
 module.exports = swift;
 
-},{}],207:[function(require,module,exports){
+},{}],210:[function(require,module,exports){
 /*
 Language: Tagger Script
 Author: Philipp Wolfer <ph.wolfer@gmail.com>
@@ -58045,7 +58331,7 @@ function taggerscript(hljs) {
 
 module.exports = taggerscript;
 
-},{}],208:[function(require,module,exports){
+},{}],211:[function(require,module,exports){
 /*
 Language: Test Anything Protocol
 Description: TAP, the Test Anything Protocol, is a simple text-based interface between testing modules in a test harness.
@@ -58094,7 +58380,7 @@ function tap(hljs) {
 
 module.exports = tap;
 
-},{}],209:[function(require,module,exports){
+},{}],212:[function(require,module,exports){
 /*
 Language: Tcl
 Description: Tcl is a very simple programming language.
@@ -58286,7 +58572,7 @@ function tcl(hljs) {
 
 module.exports = tcl;
 
-},{}],210:[function(require,module,exports){
+},{}],213:[function(require,module,exports){
 /*
 Language: Thrift
 Author: Oleg Efimov <efimovov@gmail.com>
@@ -58365,7 +58651,7 @@ function thrift(hljs) {
 
 module.exports = thrift;
 
-},{}],211:[function(require,module,exports){
+},{}],214:[function(require,module,exports){
 /*
 Language: TP
 Author: Jay Strybis <jay.strybis@gmail.com>
@@ -58538,7 +58824,7 @@ function tp(hljs) {
 
 module.exports = tp;
 
-},{}],212:[function(require,module,exports){
+},{}],215:[function(require,module,exports){
 /*
 Language: Twig
 Requires: xml.js
@@ -58800,7 +59086,7 @@ function twig(hljs) {
 
 module.exports = twig;
 
-},{}],213:[function(require,module,exports){
+},{}],216:[function(require,module,exports){
 const IDENT_RE = '[A-Za-z$_][0-9A-Za-z$_]*';
 const KEYWORDS = [
   "as", // for exports
@@ -59648,7 +59934,7 @@ function typescript(hljs) {
 
 module.exports = typescript;
 
-},{}],214:[function(require,module,exports){
+},{}],217:[function(require,module,exports){
 /*
 Language: Vala
 Author: Antono Vasiljev <antono.vasiljev@gmail.com>
@@ -59710,7 +59996,7 @@ function vala(hljs) {
 
 module.exports = vala;
 
-},{}],215:[function(require,module,exports){
+},{}],218:[function(require,module,exports){
 /*
 Language: Visual Basic .NET
 Description: Visual Basic .NET (VB.NET) is a multi-paradigm, object-oriented programming language, implemented on the .NET Framework.
@@ -59869,7 +60155,7 @@ function vbnet(hljs) {
 
 module.exports = vbnet;
 
-},{}],216:[function(require,module,exports){
+},{}],219:[function(require,module,exports){
 /*
 Language: VBScript in HTML
 Requires: xml.js, vbscript.js
@@ -59895,7 +60181,7 @@ function vbscriptHtml(hljs) {
 
 module.exports = vbscriptHtml;
 
-},{}],217:[function(require,module,exports){
+},{}],220:[function(require,module,exports){
 /*
 Language: VBScript
 Description: VBScript ("Microsoft Visual Basic Scripting Edition") is an Active Scripting language developed by Microsoft that is modeled on Visual Basic.
@@ -60117,7 +60403,7 @@ function vbscript(hljs) {
 
 module.exports = vbscript;
 
-},{}],218:[function(require,module,exports){
+},{}],221:[function(require,module,exports){
 /*
 Language: Verilog
 Author: Jon Evans <jon@craftyjon.com>
@@ -60668,7 +60954,7 @@ function verilog(hljs) {
 
 module.exports = verilog;
 
-},{}],219:[function(require,module,exports){
+},{}],222:[function(require,module,exports){
 /*
 Language: VHDL
 Author: Igor Kalnitsky <igor@kalnitsky.org>
@@ -60885,7 +61171,7 @@ function vhdl(hljs) {
 
 module.exports = vhdl;
 
-},{}],220:[function(require,module,exports){
+},{}],223:[function(require,module,exports){
 /*
 Language: Vim Script
 Author: Jun Yang <yangjvn@126.com>
@@ -61016,7 +61302,7 @@ function vim(hljs) {
 
 module.exports = vim;
 
-},{}],221:[function(require,module,exports){
+},{}],224:[function(require,module,exports){
 /*
 Language: WebAssembly
 Website: https://webassembly.org
@@ -61157,7 +61443,7 @@ function wasm(hljs) {
 
 module.exports = wasm;
 
-},{}],222:[function(require,module,exports){
+},{}],225:[function(require,module,exports){
 /*
 Language: Wren
 Description: Think Smalltalk in a Lua-sized package with a dash of Erlang and wrapped up in a familiar, modern syntax.
@@ -61461,7 +61747,7 @@ function wren(hljs) {
 
 module.exports = wren;
 
-},{}],223:[function(require,module,exports){
+},{}],226:[function(require,module,exports){
 /*
 Language: Intel x86 Assembly
 Author: innocenat <innocenat@gmail.com>
@@ -61616,7 +61902,7 @@ function x86asm(hljs) {
 
 module.exports = x86asm;
 
-},{}],224:[function(require,module,exports){
+},{}],227:[function(require,module,exports){
 /*
 Language: XL
 Author: Christophe de Dinechin <christophe@taodyne.com>
@@ -61823,7 +62109,7 @@ function xl(hljs) {
 
 module.exports = xl;
 
-},{}],225:[function(require,module,exports){
+},{}],228:[function(require,module,exports){
 /*
 Language: HTML, XML
 Website: https://www.w3.org/XML/
@@ -62059,7 +62345,7 @@ function xml(hljs) {
 
 module.exports = xml;
 
-},{}],226:[function(require,module,exports){
+},{}],229:[function(require,module,exports){
 /*
 Language: XQuery
 Author: Dirk Kirsten <dk@basex.org>
@@ -62420,7 +62706,7 @@ function xquery(_hljs) {
 
 module.exports = xquery;
 
-},{}],227:[function(require,module,exports){
+},{}],230:[function(require,module,exports){
 /*
 Language: YAML
 Description: Yet Another Markdown Language
@@ -62616,7 +62902,7 @@ function yaml(hljs) {
 
 module.exports = yaml;
 
-},{}],228:[function(require,module,exports){
+},{}],231:[function(require,module,exports){
 /*
  Language: Zephir
  Description: Zephir, an open source, high-level language designed to ease the creation and maintainability of extensions for PHP with a focus on type and memory safety.
@@ -62746,7 +63032,7 @@ function zephir(hljs) {
 
 module.exports = zephir;
 
-},{}],229:[function(require,module,exports){
+},{}],232:[function(require,module,exports){
 module.exports = attributeToProperty
 
 var transform = {
@@ -62767,7 +63053,7 @@ function attributeToProperty (h) {
   }
 }
 
-},{}],230:[function(require,module,exports){
+},{}],233:[function(require,module,exports){
 var attrToProp = require('hyperscript-attribute-to-property')
 
 var VAR = 0, TEXT = 1, OPEN = 2, CLOSE = 3, ATTR = 4
@@ -63064,7 +63350,7 @@ var closeRE = RegExp('^(' + [
 ].join('|') + ')(?:[\.#][a-zA-Z0-9\u007F-\uFFFF_:-]+)*$')
 function selfClosing (tag) { return closeRE.test(tag) }
 
-},{"hyperscript-attribute-to-property":229}],231:[function(require,module,exports){
+},{"hyperscript-attribute-to-property":232}],234:[function(require,module,exports){
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m
@@ -63151,7 +63437,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
   buffer[offset + i - d] |= s * 128
 }
 
-},{}],232:[function(require,module,exports){
+},{}],235:[function(require,module,exports){
 var containers = []; // will store container HTMLElement references
 var styleElements = []; // will store {prepend: HTMLElement, append: HTMLElement}
 
@@ -63211,7 +63497,7 @@ function createStyleElement() {
 module.exports = insertCss;
 module.exports.insertCss = insertCss;
 
-},{}],233:[function(require,module,exports){
+},{}],236:[function(require,module,exports){
 'use strict';
 
 
@@ -63877,7 +64163,7 @@ LinkifyIt.prototype.onCompile = function onCompile() {
 
 module.exports = LinkifyIt;
 
-},{"./lib/re":234}],234:[function(require,module,exports){
+},{"./lib/re":237}],237:[function(require,module,exports){
 'use strict';
 
 
@@ -64062,13 +64348,13 @@ module.exports = function (opts) {
   return re;
 };
 
-},{"uc.micro/categories/Cc/regex":331,"uc.micro/categories/P/regex":333,"uc.micro/categories/Z/regex":334,"uc.micro/properties/Any/regex":336}],235:[function(require,module,exports){
+},{"uc.micro/categories/Cc/regex":334,"uc.micro/categories/P/regex":336,"uc.micro/categories/Z/regex":337,"uc.micro/properties/Any/regex":339}],238:[function(require,module,exports){
 'use strict';
 
 
 module.exports = require('./lib/');
 
-},{"./lib/":244}],236:[function(require,module,exports){
+},{"./lib/":247}],239:[function(require,module,exports){
 // HTML5 entities map: { name -> utf16string }
 //
 'use strict';
@@ -64076,7 +64362,7 @@ module.exports = require('./lib/');
 /*eslint quotes:0*/
 module.exports = require('entities/lib/maps/entities.json');
 
-},{"entities/lib/maps/entities.json":30}],237:[function(require,module,exports){
+},{"entities/lib/maps/entities.json":33}],240:[function(require,module,exports){
 // List of valid html blocks names, accorting to commonmark spec
 // http://jgm.github.io/CommonMark/spec.html#html-blocks
 
@@ -64148,7 +64434,7 @@ module.exports = [
   'ul'
 ];
 
-},{}],238:[function(require,module,exports){
+},{}],241:[function(require,module,exports){
 // Regexps to match html elements
 
 'use strict';
@@ -64178,7 +64464,7 @@ var HTML_OPEN_CLOSE_TAG_RE = new RegExp('^(?:' + open_tag + '|' + close_tag + ')
 module.exports.HTML_TAG_RE = HTML_TAG_RE;
 module.exports.HTML_OPEN_CLOSE_TAG_RE = HTML_OPEN_CLOSE_TAG_RE;
 
-},{}],239:[function(require,module,exports){
+},{}],242:[function(require,module,exports){
 // Utilities
 //
 'use strict';
@@ -64497,7 +64783,7 @@ exports.isPunctChar         = isPunctChar;
 exports.escapeRE            = escapeRE;
 exports.normalizeReference  = normalizeReference;
 
-},{"./entities":236,"mdurl":292,"uc.micro":335,"uc.micro/categories/P/regex":333}],240:[function(require,module,exports){
+},{"./entities":239,"mdurl":295,"uc.micro":338,"uc.micro/categories/P/regex":336}],243:[function(require,module,exports){
 // Just a shortcut for bulk export
 'use strict';
 
@@ -64506,7 +64792,7 @@ exports.parseLinkLabel       = require('./parse_link_label');
 exports.parseLinkDestination = require('./parse_link_destination');
 exports.parseLinkTitle       = require('./parse_link_title');
 
-},{"./parse_link_destination":241,"./parse_link_label":242,"./parse_link_title":243}],241:[function(require,module,exports){
+},{"./parse_link_destination":244,"./parse_link_label":245,"./parse_link_title":246}],244:[function(require,module,exports){
 // Parse link destination
 //
 'use strict';
@@ -64590,7 +64876,7 @@ module.exports = function parseLinkDestination(str, pos, max) {
   return result;
 };
 
-},{"../common/utils":239}],242:[function(require,module,exports){
+},{"../common/utils":242}],245:[function(require,module,exports){
 // Parse link label
 //
 // this function assumes that first character ("[") already matches;
@@ -64640,7 +64926,7 @@ module.exports = function parseLinkLabel(state, start, disableNested) {
   return labelEnd;
 };
 
-},{}],243:[function(require,module,exports){
+},{}],246:[function(require,module,exports){
 // Parse link title
 //
 'use strict';
@@ -64697,7 +64983,7 @@ module.exports = function parseLinkTitle(str, pos, max) {
   return result;
 };
 
-},{"../common/utils":239}],244:[function(require,module,exports){
+},{"../common/utils":242}],247:[function(require,module,exports){
 // Main parser class
 
 'use strict';
@@ -65281,7 +65567,7 @@ MarkdownIt.prototype.renderInline = function (src, env) {
 
 module.exports = MarkdownIt;
 
-},{"./common/utils":239,"./helpers":240,"./parser_block":245,"./parser_core":246,"./parser_inline":247,"./presets/commonmark":248,"./presets/default":249,"./presets/zero":250,"./renderer":251,"linkify-it":233,"mdurl":292,"punycode":326}],245:[function(require,module,exports){
+},{"./common/utils":242,"./helpers":243,"./parser_block":248,"./parser_core":249,"./parser_inline":250,"./presets/commonmark":251,"./presets/default":252,"./presets/zero":253,"./renderer":254,"linkify-it":236,"mdurl":295,"punycode":329}],248:[function(require,module,exports){
 /** internal
  * class ParserBlock
  *
@@ -65405,7 +65691,7 @@ ParserBlock.prototype.State = require('./rules_block/state_block');
 
 module.exports = ParserBlock;
 
-},{"./ruler":252,"./rules_block/blockquote":253,"./rules_block/code":254,"./rules_block/fence":255,"./rules_block/heading":256,"./rules_block/hr":257,"./rules_block/html_block":258,"./rules_block/lheading":259,"./rules_block/list":260,"./rules_block/paragraph":261,"./rules_block/reference":262,"./rules_block/state_block":263,"./rules_block/table":264}],246:[function(require,module,exports){
+},{"./ruler":255,"./rules_block/blockquote":256,"./rules_block/code":257,"./rules_block/fence":258,"./rules_block/heading":259,"./rules_block/hr":260,"./rules_block/html_block":261,"./rules_block/lheading":262,"./rules_block/list":263,"./rules_block/paragraph":264,"./rules_block/reference":265,"./rules_block/state_block":266,"./rules_block/table":267}],249:[function(require,module,exports){
 /** internal
  * class Core
  *
@@ -65468,7 +65754,7 @@ Core.prototype.State = require('./rules_core/state_core');
 
 module.exports = Core;
 
-},{"./ruler":252,"./rules_core/block":265,"./rules_core/inline":266,"./rules_core/linkify":267,"./rules_core/normalize":268,"./rules_core/replacements":269,"./rules_core/smartquotes":270,"./rules_core/state_core":271,"./rules_core/text_join":272}],247:[function(require,module,exports){
+},{"./ruler":255,"./rules_core/block":268,"./rules_core/inline":269,"./rules_core/linkify":270,"./rules_core/normalize":271,"./rules_core/replacements":272,"./rules_core/smartquotes":273,"./rules_core/state_core":274,"./rules_core/text_join":275}],250:[function(require,module,exports){
 /** internal
  * class ParserInline
  *
@@ -65655,7 +65941,7 @@ ParserInline.prototype.State = require('./rules_inline/state_inline');
 
 module.exports = ParserInline;
 
-},{"./ruler":252,"./rules_inline/autolink":273,"./rules_inline/backticks":274,"./rules_inline/balance_pairs":275,"./rules_inline/emphasis":276,"./rules_inline/entity":277,"./rules_inline/escape":278,"./rules_inline/fragments_join":279,"./rules_inline/html_inline":280,"./rules_inline/image":281,"./rules_inline/link":282,"./rules_inline/linkify":283,"./rules_inline/newline":284,"./rules_inline/state_inline":285,"./rules_inline/strikethrough":286,"./rules_inline/text":287}],248:[function(require,module,exports){
+},{"./ruler":255,"./rules_inline/autolink":276,"./rules_inline/backticks":277,"./rules_inline/balance_pairs":278,"./rules_inline/emphasis":279,"./rules_inline/entity":280,"./rules_inline/escape":281,"./rules_inline/fragments_join":282,"./rules_inline/html_inline":283,"./rules_inline/image":284,"./rules_inline/link":285,"./rules_inline/linkify":286,"./rules_inline/newline":287,"./rules_inline/state_inline":288,"./rules_inline/strikethrough":289,"./rules_inline/text":290}],251:[function(require,module,exports){
 // Commonmark default options
 
 'use strict';
@@ -65738,7 +66024,7 @@ module.exports = {
   }
 };
 
-},{}],249:[function(require,module,exports){
+},{}],252:[function(require,module,exports){
 // markdown-it default options
 
 'use strict';
@@ -65781,7 +66067,7 @@ module.exports = {
   }
 };
 
-},{}],250:[function(require,module,exports){
+},{}],253:[function(require,module,exports){
 // "Zero" preset, with nothing enabled. Useful for manual configuring of simple
 // modes. For example, to parse bold/italic only.
 
@@ -65846,7 +66132,7 @@ module.exports = {
   }
 };
 
-},{}],251:[function(require,module,exports){
+},{}],254:[function(require,module,exports){
 /**
  * class Renderer
  *
@@ -66189,7 +66475,7 @@ Renderer.prototype.render = function (tokens, options, env) {
 
 module.exports = Renderer;
 
-},{"./common/utils":239}],252:[function(require,module,exports){
+},{"./common/utils":242}],255:[function(require,module,exports){
 /**
  * class Ruler
  *
@@ -66543,7 +66829,7 @@ Ruler.prototype.getRules = function (chainName) {
 
 module.exports = Ruler;
 
-},{}],253:[function(require,module,exports){
+},{}],256:[function(require,module,exports){
 // Block quotes
 
 'use strict';
@@ -66829,7 +67115,7 @@ module.exports = function blockquote(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":239}],254:[function(require,module,exports){
+},{"../common/utils":242}],257:[function(require,module,exports){
 // Code block (4 spaces padded)
 
 'use strict';
@@ -66865,7 +67151,7 @@ module.exports = function code(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],255:[function(require,module,exports){
+},{}],258:[function(require,module,exports){
 // fences (``` lang, ~~~ lang)
 
 'use strict';
@@ -66965,7 +67251,7 @@ module.exports = function fence(state, startLine, endLine, silent) {
   return true;
 };
 
-},{}],256:[function(require,module,exports){
+},{}],259:[function(require,module,exports){
 // heading (#, ##, ...)
 
 'use strict';
@@ -67022,7 +67308,7 @@ module.exports = function heading(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":239}],257:[function(require,module,exports){
+},{"../common/utils":242}],260:[function(require,module,exports){
 // Horizontal rule
 
 'use strict';
@@ -67069,7 +67355,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":239}],258:[function(require,module,exports){
+},{"../common/utils":242}],261:[function(require,module,exports){
 // HTML block
 
 'use strict';
@@ -67145,7 +67431,7 @@ module.exports = function html_block(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/html_blocks":237,"../common/html_re":238}],259:[function(require,module,exports){
+},{"../common/html_blocks":240,"../common/html_re":241}],262:[function(require,module,exports){
 // lheading (---, ===)
 
 'use strict';
@@ -67230,7 +67516,7 @@ module.exports = function lheading(state, startLine, endLine/*, silent*/) {
   return true;
 };
 
-},{}],260:[function(require,module,exports){
+},{}],263:[function(require,module,exports){
 // Lists
 
 'use strict';
@@ -67596,7 +67882,7 @@ module.exports = function list(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":239}],261:[function(require,module,exports){
+},{"../common/utils":242}],264:[function(require,module,exports){
 // Paragraph
 
 'use strict';
@@ -67650,7 +67936,7 @@ module.exports = function paragraph(state, startLine/*, endLine*/) {
   return true;
 };
 
-},{}],262:[function(require,module,exports){
+},{}],265:[function(require,module,exports){
 'use strict';
 
 
@@ -67850,7 +68136,7 @@ module.exports = function reference(state, startLine, _endLine, silent) {
   return true;
 };
 
-},{"../common/utils":239}],263:[function(require,module,exports){
+},{"../common/utils":242}],266:[function(require,module,exports){
 // Parser state class
 
 'use strict';
@@ -68083,7 +68369,7 @@ StateBlock.prototype.Token = Token;
 
 module.exports = StateBlock;
 
-},{"../common/utils":239,"../token":288}],264:[function(require,module,exports){
+},{"../common/utils":242,"../token":291}],267:[function(require,module,exports){
 // GFM table, https://github.github.com/gfm/#tables-extension-
 
 'use strict';
@@ -68306,7 +68592,7 @@ module.exports = function table(state, startLine, endLine, silent) {
   return true;
 };
 
-},{"../common/utils":239}],265:[function(require,module,exports){
+},{"../common/utils":242}],268:[function(require,module,exports){
 'use strict';
 
 
@@ -68324,7 +68610,7 @@ module.exports = function block(state) {
   }
 };
 
-},{}],266:[function(require,module,exports){
+},{}],269:[function(require,module,exports){
 'use strict';
 
 module.exports = function inline(state) {
@@ -68339,7 +68625,7 @@ module.exports = function inline(state) {
   }
 };
 
-},{}],267:[function(require,module,exports){
+},{}],270:[function(require,module,exports){
 // Replace link-like texts with link nodes.
 //
 // Currently restricted by `md.validateLink()` to http/https/ftp
@@ -68483,7 +68769,7 @@ module.exports = function linkify(state) {
   }
 };
 
-},{"../common/utils":239}],268:[function(require,module,exports){
+},{"../common/utils":242}],271:[function(require,module,exports){
 // Normalize input string
 
 'use strict';
@@ -68506,7 +68792,7 @@ module.exports = function normalize(state) {
   state.src = str;
 };
 
-},{}],269:[function(require,module,exports){
+},{}],272:[function(require,module,exports){
 // Simple typographic replacements
 //
 // (c) (C) → ©
@@ -68614,7 +68900,7 @@ module.exports = function replace(state) {
   }
 };
 
-},{}],270:[function(require,module,exports){
+},{}],273:[function(require,module,exports){
 // Convert straight quotation marks to typographic ones
 //
 'use strict';
@@ -68817,7 +69103,7 @@ module.exports = function smartquotes(state) {
   }
 };
 
-},{"../common/utils":239}],271:[function(require,module,exports){
+},{"../common/utils":242}],274:[function(require,module,exports){
 // Core state object
 //
 'use strict';
@@ -68839,7 +69125,7 @@ StateCore.prototype.Token = Token;
 
 module.exports = StateCore;
 
-},{"../token":288}],272:[function(require,module,exports){
+},{"../token":291}],275:[function(require,module,exports){
 // Join raw text tokens with the rest of the text
 //
 // This is set as a separate rule to provide an opportunity for plugins
@@ -68886,7 +69172,7 @@ module.exports = function text_join(state) {
   }
 };
 
-},{}],273:[function(require,module,exports){
+},{}],276:[function(require,module,exports){
 // Process autolinks '<protocol:...>'
 
 'use strict';
@@ -68964,7 +69250,7 @@ module.exports = function autolink(state, silent) {
   return false;
 };
 
-},{}],274:[function(require,module,exports){
+},{}],277:[function(require,module,exports){
 // Parse backticks
 
 'use strict';
@@ -69029,7 +69315,7 @@ module.exports = function backtick(state, silent) {
   return true;
 };
 
-},{}],275:[function(require,module,exports){
+},{}],278:[function(require,module,exports){
 // For each opening emphasis-like marker find a matching closing one
 //
 'use strict';
@@ -69161,7 +69447,7 @@ module.exports = function link_pairs(state) {
   }
 };
 
-},{}],276:[function(require,module,exports){
+},{}],279:[function(require,module,exports){
 // Process *this* and _that_
 //
 'use strict';
@@ -69293,7 +69579,7 @@ module.exports.postProcess = function emphasis(state) {
   }
 };
 
-},{}],277:[function(require,module,exports){
+},{}],280:[function(require,module,exports){
 // Process html entity - &#123;, &#xAF;, &quot;, ...
 
 'use strict';
@@ -69350,7 +69636,7 @@ module.exports = function entity(state, silent) {
   return false;
 };
 
-},{"../common/entities":236,"../common/utils":239}],278:[function(require,module,exports){
+},{"../common/entities":239,"../common/utils":242}],281:[function(require,module,exports){
 // Process escaped chars and hardbreaks
 
 'use strict';
@@ -69423,7 +69709,7 @@ module.exports = function escape(state, silent) {
   return true;
 };
 
-},{"../common/utils":239}],279:[function(require,module,exports){
+},{"../common/utils":242}],282:[function(require,module,exports){
 // Clean up tokens after emphasis and strikethrough postprocessing:
 // merge adjacent text nodes into one and re-calculate all token levels
 //
@@ -69466,7 +69752,7 @@ module.exports = function fragments_join(state) {
   }
 };
 
-},{}],280:[function(require,module,exports){
+},{}],283:[function(require,module,exports){
 // Process html tags
 
 'use strict';
@@ -69526,7 +69812,7 @@ module.exports = function html_inline(state, silent) {
   return true;
 };
 
-},{"../common/html_re":238}],281:[function(require,module,exports){
+},{"../common/html_re":241}],284:[function(require,module,exports){
 // Process ![image](<src> "title")
 
 'use strict';
@@ -69680,7 +69966,7 @@ module.exports = function image(state, silent) {
   return true;
 };
 
-},{"../common/utils":239}],282:[function(require,module,exports){
+},{"../common/utils":242}],285:[function(require,module,exports){
 // Process [link](<to> "stuff")
 
 'use strict';
@@ -69832,7 +70118,7 @@ module.exports = function link(state, silent) {
   return true;
 };
 
-},{"../common/utils":239}],283:[function(require,module,exports){
+},{"../common/utils":242}],286:[function(require,module,exports){
 // Process links like https://example.org/
 
 'use strict';
@@ -69892,7 +70178,7 @@ module.exports = function linkify(state, silent) {
   return true;
 };
 
-},{}],284:[function(require,module,exports){
+},{}],287:[function(require,module,exports){
 // Proceess '\n'
 
 'use strict';
@@ -69940,7 +70226,7 @@ module.exports = function newline(state, silent) {
   return true;
 };
 
-},{"../common/utils":239}],285:[function(require,module,exports){
+},{"../common/utils":242}],288:[function(require,module,exports){
 // Inline parser state
 
 'use strict';
@@ -70100,7 +70386,7 @@ StateInline.prototype.Token = Token;
 
 module.exports = StateInline;
 
-},{"../common/utils":239,"../token":288}],286:[function(require,module,exports){
+},{"../common/utils":242,"../token":291}],289:[function(require,module,exports){
 // ~~strike through~~
 //
 'use strict';
@@ -70232,7 +70518,7 @@ module.exports.postProcess = function strikethrough(state) {
   }
 };
 
-},{}],287:[function(require,module,exports){
+},{}],290:[function(require,module,exports){
 // Skip text characters for text token, place those to pending buffer
 // and increment current pos
 
@@ -70323,7 +70609,7 @@ module.exports = function text(state, silent) {
   return true;
 };*/
 
-},{}],288:[function(require,module,exports){
+},{}],291:[function(require,module,exports){
 // Token class
 
 'use strict';
@@ -70526,7 +70812,7 @@ Token.prototype.attrJoin = function attrJoin(name, value) {
 
 module.exports = Token;
 
-},{}],289:[function(require,module,exports){
+},{}],292:[function(require,module,exports){
 
 'use strict';
 
@@ -70650,7 +70936,7 @@ decode.componentChars = '';
 
 module.exports = decode;
 
-},{}],290:[function(require,module,exports){
+},{}],293:[function(require,module,exports){
 
 'use strict';
 
@@ -70750,7 +71036,7 @@ encode.componentChars = "-_.!~*'()";
 
 module.exports = encode;
 
-},{}],291:[function(require,module,exports){
+},{}],294:[function(require,module,exports){
 
 'use strict';
 
@@ -70777,7 +71063,7 @@ module.exports = function format(url) {
   return result;
 };
 
-},{}],292:[function(require,module,exports){
+},{}],295:[function(require,module,exports){
 'use strict';
 
 
@@ -70786,7 +71072,7 @@ module.exports.decode = require('./decode');
 module.exports.format = require('./format');
 module.exports.parse  = require('./parse');
 
-},{"./decode":289,"./encode":290,"./format":291,"./parse":293}],293:[function(require,module,exports){
+},{"./decode":292,"./encode":293,"./format":294,"./parse":296}],296:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -71100,7 +71386,7 @@ Url.prototype.parseHost = function(host) {
 
 module.exports = urlParse;
 
-},{}],294:[function(require,module,exports){
+},{}],297:[function(require,module,exports){
 assert.notEqual = notEqual
 assert.notOk = notOk
 assert.equal = equal
@@ -71124,7 +71410,7 @@ function assert (t, m) {
   if (!t) throw new Error(m || 'AssertionError')
 }
 
-},{}],295:[function(require,module,exports){
+},{}],298:[function(require,module,exports){
 var splice = require('remove-array-items')
 var nanotiming = require('nanotiming')
 var assert = require('assert')
@@ -71288,7 +71574,7 @@ Nanobus.prototype._emit = function (arr, eventName, data, uuid) {
   }
 }
 
-},{"assert":294,"nanotiming":318,"remove-array-items":296}],296:[function(require,module,exports){
+},{"assert":297,"nanotiming":321,"remove-array-items":299}],299:[function(require,module,exports){
 'use strict'
 
 /**
@@ -71317,7 +71603,7 @@ module.exports = function removeItems (arr, startIdx, removeCount) {
   arr.length = len
 }
 
-},{}],297:[function(require,module,exports){
+},{}],300:[function(require,module,exports){
 const document = require('global/document')
 const nanotiming = require('nanotiming')
 const morph = require('nanomorph')
@@ -71477,7 +71763,7 @@ Nanocomponent.prototype.update = function () {
   throw new Error('nanocomponent: update should be implemented!')
 }
 
-},{"assert":298,"global/document":33,"nanomorph":309,"nanotiming":318,"on-load":321}],298:[function(require,module,exports){
+},{"assert":301,"global/document":36,"nanomorph":312,"nanotiming":321,"on-load":324}],301:[function(require,module,exports){
 module.exports = assert
 
 class AssertionError extends Error {}
@@ -71497,7 +71783,7 @@ function assert (t, m) {
   }
 }
 
-},{}],299:[function(require,module,exports){
+},{}],302:[function(require,module,exports){
 var assert = require('assert')
 
 var safeExternalLink = /(noopener|noreferrer) (noopener|noreferrer)/
@@ -71542,7 +71828,7 @@ function href (cb, root) {
   })
 }
 
-},{"assert":294}],300:[function(require,module,exports){
+},{"assert":297}],303:[function(require,module,exports){
 'use strict'
 
 var trailingNewlineRegex = /\n[\s]+$/
@@ -71676,7 +71962,7 @@ module.exports = function appendChild (el, childs) {
   }
 }
 
-},{}],301:[function(require,module,exports){
+},{}],304:[function(require,module,exports){
 'use strict'
 
 module.exports = [
@@ -71686,17 +71972,17 @@ module.exports = [
   'readonly', 'required', 'reversed', 'selected'
 ]
 
-},{}],302:[function(require,module,exports){
+},{}],305:[function(require,module,exports){
 module.exports = require('./dom')(document)
 
-},{"./dom":304}],303:[function(require,module,exports){
+},{"./dom":307}],306:[function(require,module,exports){
 'use strict'
 
 module.exports = [
   'indeterminate'
 ]
 
-},{}],304:[function(require,module,exports){
+},{}],307:[function(require,module,exports){
 'use strict'
 
 var hyperx = require('hyperx')
@@ -71814,7 +72100,7 @@ module.exports = function (document) {
   return exports
 }
 
-},{"./append-child":300,"./bool-props":301,"./direct-props":303,"./svg-tags":306,"hyperx":230}],305:[function(require,module,exports){
+},{"./append-child":303,"./bool-props":304,"./direct-props":306,"./svg-tags":309,"hyperx":233}],308:[function(require,module,exports){
 'use strict'
 
 function nanohtmlRawBrowser (tag) {
@@ -71829,7 +72115,7 @@ function toArray (arr) {
 
 module.exports = nanohtmlRawBrowser
 
-},{}],306:[function(require,module,exports){
+},{}],309:[function(require,module,exports){
 'use strict'
 
 module.exports = [
@@ -71849,7 +72135,7 @@ module.exports = [
   'tspan', 'use', 'view', 'vkern'
 ]
 
-},{}],307:[function(require,module,exports){
+},{}],310:[function(require,module,exports){
 var assert = require('assert')
 
 var emojis = {
@@ -72014,7 +72300,7 @@ function pad (str) {
   return str.length !== 2 ? 0 + str : str
 }
 
-},{"assert":7}],308:[function(require,module,exports){
+},{"assert":10}],311:[function(require,module,exports){
 module.exports = LRU
 
 function LRU (opts) {
@@ -72152,7 +72438,7 @@ LRU.prototype.evict = function () {
   this.remove(this.tail)
 }
 
-},{}],309:[function(require,module,exports){
+},{}],312:[function(require,module,exports){
 var assert = require('nanoassert')
 var morph = require('./lib/morph')
 
@@ -72317,7 +72603,7 @@ function same (a, b) {
   return false
 }
 
-},{"./lib/morph":311,"nanoassert":294}],310:[function(require,module,exports){
+},{"./lib/morph":314,"nanoassert":297}],313:[function(require,module,exports){
 module.exports = [
   // attribute events (can be set with attributes)
   'onclick',
@@ -72364,7 +72650,7 @@ module.exports = [
   'onfocusout'
 ]
 
-},{}],311:[function(require,module,exports){
+},{}],314:[function(require,module,exports){
 var events = require('./events')
 var eventsLength = events.length
 
@@ -72539,7 +72825,7 @@ function updateAttribute (newNode, oldNode, name) {
   }
 }
 
-},{"./events":310}],312:[function(require,module,exports){
+},{"./events":313}],315:[function(require,module,exports){
 var reg = /([^?=&]+)(=([^&]*))?/g
 var assert = require('assert')
 
@@ -72563,7 +72849,7 @@ function qs (url) {
   return obj
 }
 
-},{"assert":294}],313:[function(require,module,exports){
+},{"assert":297}],316:[function(require,module,exports){
 'use strict'
 
 var assert = require('assert')
@@ -72600,7 +72886,7 @@ function nanoraf (render, raf) {
   }
 }
 
-},{"assert":294}],314:[function(require,module,exports){
+},{"assert":297}],317:[function(require,module,exports){
 var assert = require('assert')
 var wayfarer = require('wayfarer')
 
@@ -72656,7 +72942,7 @@ function pathname (routename, isElectron) {
   return decodeURI(routename.replace(suffix, '').replace(normalize, '/'))
 }
 
-},{"assert":294,"wayfarer":338}],315:[function(require,module,exports){
+},{"assert":297,"wayfarer":341}],318:[function(require,module,exports){
 var assert = require('assert')
 
 var hasWindow = typeof window !== 'undefined'
@@ -72713,7 +72999,7 @@ NanoScheduler.prototype.setTimeout = function (cb) {
 
 module.exports = createScheduler
 
-},{"assert":294}],316:[function(require,module,exports){
+},{"assert":297}],319:[function(require,module,exports){
 var Nanobus = require('nanobus')
 var assert = require('assert')
 var Parallelstate = require('./parallel-state')
@@ -72802,7 +73088,7 @@ Nanostate.prototype._next = function (eventName) {
   return this.transitions[this.state][eventName]
 }
 
-},{"./parallel-state":317,"assert":294,"nanobus":295}],317:[function(require,module,exports){
+},{"./parallel-state":320,"assert":297,"nanobus":298}],320:[function(require,module,exports){
 var Nanobus = require('nanobus')
 var assert = require('assert')
 
@@ -72842,7 +73128,7 @@ Parallelstate.prototype.emit = function (eventName) {
   Nanobus.prototype.emit.call(this, eventName)
 }
 
-},{"assert":294,"nanobus":295}],318:[function(require,module,exports){
+},{"assert":297,"nanobus":298}],321:[function(require,module,exports){
 var scheduler = require('nanoscheduler')()
 var assert = require('assert')
 
@@ -72892,7 +73178,7 @@ function noop (cb) {
   }
 }
 
-},{"assert":294,"nanoscheduler":315}],319:[function(require,module,exports){
+},{"assert":297,"nanoscheduler":318}],322:[function(require,module,exports){
 /*
 object-assign
 (c) Sindre Sorhus
@@ -72984,7 +73270,7 @@ module.exports = shouldUseNative() ? Object.assign : function (target, source) {
 	return to;
 };
 
-},{}],320:[function(require,module,exports){
+},{}],323:[function(require,module,exports){
 var assert = require('assert')
 
 module.exports = objectChangeCallsite
@@ -73021,7 +73307,7 @@ function strip (str) {
   return '\n' + arr.join('\n')
 }
 
-},{"assert":7}],321:[function(require,module,exports){
+},{"assert":10}],324:[function(require,module,exports){
 /* global MutationObserver */
 var document = require('global/document')
 var window = require('global/window')
@@ -73118,7 +73404,7 @@ function eachMutation (nodes, fn) {
   }
 }
 
-},{"global/document":33,"global/window":34}],322:[function(require,module,exports){
+},{"global/document":36,"global/window":37}],325:[function(require,module,exports){
 var scheduler = require('nanoscheduler')()
 var assert = require('assert')
 
@@ -73178,7 +73464,7 @@ function onPerformance (cb) {
   }
 }
 
-},{"assert":294,"nanoscheduler":315}],323:[function(require,module,exports){
+},{"assert":297,"nanoscheduler":318}],326:[function(require,module,exports){
 module.exports = plucker
 
 function plucker(path, object) {
@@ -73215,7 +73501,7 @@ function pluck(path) {
   }
 }
 
-},{}],324:[function(require,module,exports){
+},{}],327:[function(require,module,exports){
 module.exports = prettierBytes
 
 function prettierBytes (num) {
@@ -73247,7 +73533,7 @@ function prettierBytes (num) {
   }
 }
 
-},{}],325:[function(require,module,exports){
+},{}],328:[function(require,module,exports){
 // shim for using process in browser
 var process = module.exports = {};
 
@@ -73433,7 +73719,7 @@ process.chdir = function (dir) {
 };
 process.umask = function() { return 0; };
 
-},{}],326:[function(require,module,exports){
+},{}],329:[function(require,module,exports){
 (function (global){(function (){
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 ;(function(root) {
@@ -73970,7 +74256,7 @@ process.umask = function() { return 0; };
 }(this));
 
 }).call(this)}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],327:[function(require,module,exports){
+},{}],330:[function(require,module,exports){
 'use strict';
 
 /**
@@ -74001,7 +74287,7 @@ function removeItems (arr, startIdx, removeCount) {
 
 module.exports = removeItems;
 
-},{}],328:[function(require,module,exports){
+},{}],331:[function(require,module,exports){
 module.exports = scrollToAnchor
 
 function scrollToAnchor (anchor, options) {
@@ -74013,10 +74299,10 @@ function scrollToAnchor (anchor, options) {
   }
 }
 
-},{}],329:[function(require,module,exports){
+},{}],332:[function(require,module,exports){
 module.exports = require('insert-css')
 
-},{"insert-css":232}],330:[function(require,module,exports){
+},{"insert-css":235}],333:[function(require,module,exports){
 var fastSafeStringify = require('fast-safe-stringify')
 var copy = require('clipboard-copy')
 
@@ -74033,15 +74319,15 @@ function stateCopy (obj) {
 
 module.exports = stateCopy
 
-},{"clipboard-copy":27,"fast-safe-stringify":32}],331:[function(require,module,exports){
+},{"clipboard-copy":30,"fast-safe-stringify":35}],334:[function(require,module,exports){
 module.exports=/[\0-\x1F\x7F-\x9F]/
-},{}],332:[function(require,module,exports){
-module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804[\uDCBD\uDCCD]|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/
-},{}],333:[function(require,module,exports){
-module.exports=/[!-#%-\*,-\/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u09FD\u0A76\u0AF0\u0C84\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E4E\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD803[\uDF55-\uDF59]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC8\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD806[\uDC3B\uDE3F-\uDE46\uDE9A-\uDE9C\uDE9E-\uDEA2]|\uD807[\uDC41-\uDC45\uDC70\uDC71\uDEF7\uDEF8]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD81B[\uDE97-\uDE9A]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
-},{}],334:[function(require,module,exports){
-module.exports=/[ \xA0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]/
 },{}],335:[function(require,module,exports){
+module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u202A-\u202E\u2060-\u2064\u2066-\u206F\uFEFF\uFFF9-\uFFFB]|\uD804[\uDCBD\uDCCD]|\uD82F[\uDCA0-\uDCA3]|\uD834[\uDD73-\uDD7A]|\uDB40[\uDC01\uDC20-\uDC7F]/
+},{}],336:[function(require,module,exports){
+module.exports=/[!-#%-\*,-\/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u09FD\u0A76\u0AF0\u0C84\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E4E\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD803[\uDF55-\uDF59]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC8\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD806[\uDC3B\uDE3F-\uDE46\uDE9A-\uDE9C\uDE9E-\uDEA2]|\uD807[\uDC41-\uDC45\uDC70\uDC71\uDEF7\uDEF8]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD81B[\uDE97-\uDE9A]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
+},{}],337:[function(require,module,exports){
+module.exports=/[ \xA0\u1680\u2000-\u200A\u2028\u2029\u202F\u205F\u3000]/
+},{}],338:[function(require,module,exports){
 'use strict';
 
 exports.Any = require('./properties/Any/regex');
@@ -74050,9 +74336,9 @@ exports.Cf  = require('./categories/Cf/regex');
 exports.P   = require('./categories/P/regex');
 exports.Z   = require('./categories/Z/regex');
 
-},{"./categories/Cc/regex":331,"./categories/Cf/regex":332,"./categories/P/regex":333,"./categories/Z/regex":334,"./properties/Any/regex":336}],336:[function(require,module,exports){
+},{"./categories/Cc/regex":334,"./categories/Cf/regex":335,"./categories/P/regex":336,"./categories/Z/regex":337,"./properties/Any/regex":339}],339:[function(require,module,exports){
 module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/
-},{}],337:[function(require,module,exports){
+},{}],340:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var assert = require('assert')
 
@@ -74090,7 +74376,7 @@ function getAllRoutes (router) {
   return transform(tree)
 }
 
-},{"assert":294}],338:[function(require,module,exports){
+},{"assert":297}],341:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var assert = require('assert')
 var trie = require('./trie')
@@ -74165,7 +74451,7 @@ function Wayfarer (dft) {
   }
 }
 
-},{"./trie":339,"assert":294}],339:[function(require,module,exports){
+},{"./trie":342,"assert":297}],342:[function(require,module,exports){
 /* eslint-disable node/no-deprecated-api */
 var assert = require('assert')
 
@@ -74306,7 +74592,7 @@ function has (object, property) {
   return Object.prototype.hasOwnProperty.call(object, property)
 }
 
-},{"assert":294}],340:[function(require,module,exports){
+},{"assert":297}],343:[function(require,module,exports){
 const html = require("nanohtml");
 const Links = require("../components/links");
 
@@ -74325,14 +74611,14 @@ function view(state, emit) {
 
 module.exports = exports = view;
 
-},{"../components/links":4,"nanohtml":302}],341:[function(require,module,exports){
+},{"../components/links":4,"nanohtml":305}],344:[function(require,module,exports){
 const aboutView = require("./about");
 const mainView = require("./main");
 
 exports.mainView = mainView;
 exports.aboutView = aboutView;
 
-},{"./about":340,"./main":342}],342:[function(require,module,exports){
+},{"./about":343,"./main":345}],345:[function(require,module,exports){
 const html = require("nanohtml");
 const Links = require("../components/links");
 
@@ -74349,7 +74635,7 @@ function view(state, emit) {
 }
 module.exports = exports = view;
 
-},{"../components/links":4,"nanohtml":302}],343:[function(require,module,exports){
+},{"../components/links":4,"nanohtml":305}],346:[function(require,module,exports){
 const html = require("nanohtml");
 const Links = require("../components/links");
 
@@ -74369,7 +74655,25 @@ function view(state, emit) {
 
 module.exports = exports = view;
 
-},{"../components/links":4,"nanohtml":302}],344:[function(require,module,exports){
+},{"../components/links":4,"nanohtml":305}],347:[function(require,module,exports){
+const html = require("nanohtml");
+const Links = require("../components/links");
+const Params = require("../components/params");
+
+function view(state, emit) {
+  const links = new Links();
+  const params = new Params();
+  return html`<body>
+    <div class="container">
+      <div class="nav">${links.render({ state, emit })}</div>
+      <div class="main">${params.render({ state, emit })}</div>
+    </div>
+  </body>`;
+}
+
+module.exports = exports = view;
+
+},{"../components/links":4,"../components/params":5,"nanohtml":305}],348:[function(require,module,exports){
 const html = require("nanohtml");
 const Links = require("../components/links");
 const RandomPage = require("../components/randomPage");
@@ -74387,7 +74691,7 @@ function view(state, emit) {
 
 module.exports = exports = view;
 
-},{"../components/links":4,"../components/randomPage":5,"nanohtml":302}],345:[function(require,module,exports){
+},{"../components/links":4,"../components/randomPage":6,"nanohtml":305}],349:[function(require,module,exports){
 const html = require("nanohtml");
 const Links = require("../components/links");
 
@@ -74414,4 +74718,25 @@ function view(state, emit) {
 
 module.exports = exports = view;
 
-},{"../components/links":4,"../format":6,"nanohtml":302}]},{},[2]);
+},{"../components/links":4,"../format":9,"nanohtml":305}],350:[function(require,module,exports){
+const html = require("nanohtml");
+const Links = require("../components/links");
+const Toaster = require("../components/toaster");
+const Toast = require("../components/toastContainer");
+
+function view(state, emit) {
+  const links = new Links();
+  const toaster = new Toaster();
+  const toast = new Toast();
+  return html`<body>
+    ${toast.render({ state, emit })}
+    <div class="container">
+      <div class="nav">${links.render({ state, emit })}</div>
+      <div class="main">${toaster.render({ state, emit })}</div>
+    </div>
+  </body>`;
+}
+
+module.exports = exports = view;
+
+},{"../components/links":4,"../components/toastContainer":7,"../components/toaster":8,"nanohtml":305}]},{},[2]);
